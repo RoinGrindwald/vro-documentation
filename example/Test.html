@@ -1,356 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
-    /* Variables */
+<title>Test</title>
+<style>
+  /*
+ * Custom Highlight.js Theme for Aria Automation Orchestrator Mimic
+ * Designed to provide a light, clean syntax highlighting experience,
+ * mimicking the style seen in Aria Automation Orchestrator 8.18.
+ */
+
+/* ==========================================================================
+   Highlight.js Core Styles
+   ========================================================================== */
+
+.hljs {
+  display: block;
+  padding: 1em;
+  color: #333333;
+  border-radius: 0.5em;
+  font-family: "Consolas", "Courier New", monospace;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0px;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Specific highlighting for different token types */
+
+.hljs-comment,
+.hljs-quote {
+  color: #008000;
+  /* Muted green for comments, based on screenshot */
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-attribute,
+.hljs-meta .hljs-keyword {
+  color: #0000ff;
+  /* Distinct blue for keywords, based on screenshot */
+}
+
+.hljs-string,
+.hljs-meta .hljs-string {
+  color: #a31515;
+  /* Dark red for strings, based on screenshot */
+}
+
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-selector-id,
+.hljs-name {
+  color: #333333;
+  /* Default text color for these elements */
+}
+
+.hljs-literal {
+  color: #0000ff;
+}
+
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-template-tag,
+.hljs-addition,
+.hljs-regexp,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #333333;
+  /* Default text color for these elements */
+}
+
+.hljs-number,
+.hljs-title.class_ {
+  color: #008080;
+  /* Teal for numbers and class titles */
+}
+
+.hljs-deletion,
+.hljs-selector-class {
+  color: #cc0000;
+  /* Dark red for deletions, similar to strings */
+}
+
+.hljs-subst,
+.hljs-punctuation {
+  color: #333333;
+  /* Default text color for substitutions and punctuation */
+}
+
+.hljs-tag {
+  color: #56b6c2;
+  /* Cyan for HTML/XML tags, keeping previous color as no direct reference */
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+/* Line numbering styles (if using highlight.js line numbering plugin) */
+.hljs-ln-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: right;
+  border-right: 1px solid #cccccc;
+  /* Lighter separator for line numbers */
+  color: #999999;
+  /* Muted light gray for line numbers */
+  vertical-align: top;
+  padding-right: 0.5em;
+}
+
+.hljs-ln-code {
+  padding-left: 0.5em;
+}
+
+/* ==========================================================================
+   General Document Styles (not specific to Highlight.js)
+   ========================================================================== */
+
+/* Variables */
 :root {
-    --brand-color: #BE252F;
+  --brand-color: #BE252F;
+  /* Highlight.js will handle most colors, but custom ones can be set here if needed */
 }
 
 /* Base Styles */
 body {
-    font-family: 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
-    font-size: 14px;
-    padding: 0 26px;
-    line-height: 22px;
+  font-family: 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+  font-size: 14px;
+  padding: 0 26px;
+  line-height: 22px;
 }
 
-*, html {
-    scroll-behavior: smooth !important;
+*,
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 1em;
 }
-
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:focus,
 input:focus,
 select:focus,
 textarea:focus {
-    outline: 1px solid -webkit-focus-ring-color;
-    outline-offset: -1px;
+  outline: 1px solid -webkit-focus-ring-color;
+  outline-offset: -1px;
 }
 
 svg a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 g a:focus {
-    outline: unset;
-}
-
-#WorkflowGraph svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  outline: unset;
 }
 
 hr {
-    border: 0;
-    height: 2px;
-    border-bottom: 2px solid; /* Consider adding a default color like #ccc or currentColor */
+  border: 0;
+  height: 2px;
+  border-bottom: 2px solid;
+  /* Consider adding a default color like #ccc or currentColor */
 }
 
 /* Headings */
-h1, h2, h3 {
-    font-weight: normal; /* Apply to all headings */
-}
-h1, h2 {
-    color: var(--brand-color);
-    padding-bottom: 0.3em;
-    line-height: 1.2;
-    border-bottom-style: solid; /* Consider adding a default color like #ccc or currentColor */
-}
-h1 {
-    border-bottom-width: 3px;
-}
-h2 {
-    border-bottom-width: 2px;
-}
+h1,
+h2,
 h3 {
-    filter: contrast(.8);
+  font-weight: normal;
+  /* Apply to all headings */
+}
+
+h1,
+h2 {
+  color: var(--brand-color);
+  padding-bottom: 0.3em;
+  line-height: 1.2;
+  border-bottom-style: solid;
+  /* Consider adding a default color like #ccc or currentColor */
+}
+
+h1 {
+  border-bottom-width: 3px;
+}
+
+h2 {
+  border-bottom-width: 2px;
+}
+
+h3 {
+  filter: contrast(.8);
 }
 
 /* Code and Preformatted Text */
 code {
-    font-family: Menlo, Monaco, Consolas, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback';
-    font-size: 1em;
-    line-height: 1.357em;
+  font-family: Menlo, Monaco, Consolas, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback';
+  font-size: 1em;
+  line-height: 1.357em;
+  /* Highlight.js styles will apply to inner spans */
 }
+
 pre {
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-    overflow-x: auto;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  padding: 0;
+  /* Remove default padding for line numbers */
+  display: grid;
+  /* Use grid for line numbers */
+  grid-template-columns: auto 1fr;
+  /* Line numbers on left, code content on right */
+  counter-reset: line-number;
+  /* Initialize line number counter */
+}
+
+pre>.code-container {
+  padding: 0px;
+}
+
+pre .line {
+  counter-increment: line-number;
+  /* Increment for each line */
+  display: block;
+  /* Each line is a block */
+  min-height: 1.357em;
+  /* Match code line-height for alignment */
+}
+
+pre .line::before {
+  content: counter(line-number);
+  /* Display the counter value */
+  display: inline-block;
+  text-align: right;
+  color: #999;
+  padding-right: 1em;
+  border-right: 1px solid #eee;
+  /* Separator line */
+  background-color: #f0f0f0;
+  /* Background for line number area */
+  user-select: none;
+  /* Prevent selection of line numbers */
+  min-width: 2em;
+  margin-right: 1em;
+}
+
+/* Custom Syntax Highlighting Classes (Highlight.js will override these if it runs) */
+/* These are kept for reference or if highlight.js fails to load */
+.h-keyword {
+  color: #0000ff;
+  font-weight: bold;
+}
+
+.h-string {
+  color: #a31515;
+}
+
+.h-comment {
+  color: #008000;
+  font-style: italic;
+}
+
+.h-number {
+  color: #098677;
+}
+
+.h-operator {
+  color: #af0000;
+}
+
+.h-variable {
+  color: #000000;
+}
+
+.h-function {
+  color: #795e26;
+}
+
+/* ==========================================================================
+   Component Specific Styles
+   ========================================================================== */
+
+/* WorkflowGraph specific styles */
+#WorkflowGraph {
+  width: 100%;
+  height: 60vh;
+  /* Give it a defined height */
+  overflow: hidden;
+  /* Hide overflow when zooming/panning */
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  cursor: grab;
+  /* Indicate draggable */
+  touch-action: none;
+  /* Prevent default touch actions like pull-to-refresh */
+  background-image: radial-gradient(#d3d3d3 1px, transparent 1px);
+  background-size: 1.2rem 1.2rem;
+  /* Adjust to control dot density and spacing */
+  margin: 0;
+  /* Remove default body margin */
+}
+
+#WorkflowGraph.panning {
+  cursor: grabbing;
+  /* Indicate currently dragging */
+}
+
+#WorkflowGraph svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* object-fit and max-height removed to allow JS to control scaling via viewBox */
+}
+
+.diagram-controls {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.diagram-controls button {
+  padding: 8px 15px;
+  background-color: var(--brand-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.diagram-controls button:hover {
+  background-color: #a02028;
+  /* Slightly darker brand color */
 }
 
 /* Card Component */
 .card {
-    padding: 2em;
-    background: #ededed;
-    border-radius: 1em;
-    margin: 2em 0;
-    border: 1px solid #c1c1c1;
-    overflow: hidden;
+  padding: 2em;
+  background: #ededed;
+  border-radius: 1em;
+  margin: 2em 0;
+  border: 1px solid #c1c1c1;
+  overflow: hidden;
 }
 
+/* Table of Contents (TOC) */
 .toc li {
-	color: var(--brand-color);
+  color: var(--brand-color);
 }
 
 .toc li a {
-	color: #272727;
+  color: #272727;
 }
 
 /* Note/Hint/Important Blocks */
-.note, .hint, .important {
-    margin: .5em 0;
+.note,
+.hint,
+.important {
+  margin: .5em 0;
 }
+
 /* Common blockquote styles for notes/hints/important */
 .note blockquote,
 .hint blockquote,
 .important blockquote {
-    padding: .1em 1em;
-    border-radius: 5px;
+  padding: .1em 1em;
+  border-radius: 5px;
 }
+
 .hint blockquote {
-    background: #b0f1b0a1;
-    border-color: #45c536a6;
+  background: #b0f1b0a1;
+  border-color: #45c536a6;
 }
+
 .note blockquote {
-    background: #e6e6e6a1;
-    border-color: #808080a6;
+  background: #e6e6e6a1;
+  border-color: #808080a6;
 }
+
 .important blockquote {
-    background: #68e3ffa1;
-    border-color: #1190ad;
+  background: #68e3ffa1;
+  border-color: #1190ad;
 }
 
 /* Log Block */
 .log {
-    background: black;
-    padding: 1em;
-    border-radius: .5em;
+  background: black;
+  padding: 1em;
+  border-radius: .5em;
 }
+
 .log p {
-    margin: 0;
+  margin: 0;
 }
 
 /* Guide Specific Styles */
 .guide ol {
-    counter-reset: li;
-    margin-left: 0;
-    padding-left: 0;
+  counter-reset: li;
+  margin-left: 0;
+  padding-left: 0;
 }
+
 .guide a {
-    font-size: 1.2em;
-    color: var(--brand-color);
+  font-size: 1.2em;
+  color: var(--brand-color);
 }
-.guide ol > li {
-    position: relative;
-    margin: 0 0 2em 3em;
-    padding: 1em 0 0 3em;
-    list-style: none;
+
+.guide ol>li {
+  list-style: none;
 }
-.guide ol > li:before {
-    content: counter(li);
-    counter-increment: li;
-    position: absolute;
-    left: -2em;
-    width: 1.5em;
-    height: 1.5em;
-    padding: .5em;
-    color: #fff;
-    background: var(--brand-color) !important;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 5em;
-    line-height: 1.5em;
-    font-size: 1.5em;
+
+.guide ol>li h3 {
+  position: relative;
+  margin: 0 0 2em 3em;
+  padding: 1em 0 0 1em;
+  list-style: none;
+}
+
+.guide ol>li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  padding: .5em;
+  color: #fff;
+  background: var(--brand-color) !important;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5em;
+  line-height: 1.5em;
+  font-size: 1.5em;
 }
 
 /* Table Styles (General - applies to screen and print) */
-table {
-    border-collapse: collapse; /* Collapses borders for a cleaner look */
-    width: 100%; /* Ensures tables use full available width */
-    margin-bottom: 1em; /* Adds space below tables */
+li>table:first-of-type {
+  margin-bottom: 3em;
 }
+
+table {
+  border-collapse: collapse;
+  /* Collapses borders for a cleaner look */
+  width: 100%;
+  /* Ensures tables use full available width */
+}
+
+table.table>* th {
+  width: 15%;
+}
+
 /* Cell styling for all th and td */
-th, td {
-    border: 1px solid #ccc; /* Light grey borders for cells */
-    padding: 8px; /* Padding inside cells for readability (from print styles) */
-    text-align: left; /* Aligns text to the left */
-    vertical-align: top; /* Aligns content to the top */
+th,
+td {
+  border: 1px solid #ccc;
+  /* Light grey borders for cells */
+  padding: 8px;
+  /* Padding inside cells for readability (from print styles) */
+  text-align: left;
+  /* Aligns text to the left */
+  vertical-align: top;
+  /* Aligns content to the top */
 }
 
 th {
-    background-color: #f5f5f5;
-}
-/* Repeat table headers on new pages (for both screen and print, though print is where it's visibly effective) */
-thead {
-    display: table-header-group;
-}
-/* Repeat table footers on new pages (for both screen and print) */
-tfoot {
-    display: table-footer-group;
+  background-color: #f5f5f5;
 }
 
-/* Media Queries for Screen Layouts */
+td.script {
+  padding: 0;
+}
+
+td.script>pre {
+  padding: 0;
+  margin: 0;
+  border: unset;
+}
+
+/* Repeat table headers on new pages (for both screen and print, though print is where it's visibly effective) */
+thead {
+  display: table-header-group;
+}
+
+/* Repeat table footers on new pages (for both screen and print) */
+tfoot {
+  display: table-footer-group;
+}
+
+/* ==========================================================================
+   Media Queries for Screen Layouts
+   ========================================================================== */
 
 /* Styles for screens 1200px and wider */
 @media only screen and (min-width: 1200px) {
-    body {
-        background: #ebebeb;
-    }
-    div#documentation {
-        max-width: 1200px;
-        background: white;
-        margin: 2em auto;
-        padding: 3em;
-        border-radius: 1em;
-        overflow: hidden;
-        transition: border-radius 1s ease-in-out, padding 1s ease-in-out, margin 1s ease-in-out;
-    }
+  body {
+    background: #ebebeb;
+  }
+
+  div#documentation {
+    max-width: 1200px;
+    background: white;
+    margin: 2em auto;
+    padding: 3em;
+    border-radius: 1em;
+    overflow: hidden;
+    transition: border-radius 1s ease-in-out, padding 1s ease-in-out, margin 1s ease-in-out;
+  }
 }
 
 /* Styles for screens 2000px and wider (overrides some 1200px rules) */
 @media only screen and (min-width: 2000px) {
-    div#documentation {
-        position: absolute;
-        left: 35em;
-        right: 3em;
-        max-width: 1200px;
-        background: white;
-        padding: 3em;
-        border-radius: 1em;
-        overflow: hidden;
-        transition: 1s ease-in-out;
-    }
-    .toc {
-        position: fixed;
-        left: 7em;
-        top: 2.5em;
-        background: white;
-        padding: 1em 2em;
-        border-radius: 1em;
-        transition: 1s ease-in-out;
-    }
+  div#documentation {
+    position: absolute;
+    left: 35em;
+    right: 3em;
+    max-width: 1200px;
+    background: white;
+    padding: 3em;
+    border-radius: 1em;
+    overflow: hidden;
+    transition: 1s ease-in-out;
+  }
+
+  .toc {
+    position: fixed;
+    left: 7em;
+    top: 2.5em;
+    background: white;
+    padding: 1em 2em;
+    border-radius: 1em;
+    transition: 1s ease-in-out;
+  }
 }
 
 /* Styles for screens 1200px and narrower */
 @media only screen and (max-width: 1200px) {
-    body {
-        background-color: white;
-    }
-    div#documentation {
-        max-width: 1200px;
-        margin: 1em auto;
-        overflow: hidden;
-        transition: margin 1s ease-in-out;
-    }
+  body {
+    background-color: white;
+  }
+
+  div#documentation {
+    max-width: 1200px;
+    margin: 1em auto;
+    overflow: hidden;
+    transition: margin 1s ease-in-out;
+  }
 }
 
-/* Print Media Specific Styles */
+/* ==========================================================================
+   Print Media Specific Styles
+   ========================================================================== */
+
 @media print {
-    /* Ensure H2 elements (except the first) start on a new page */
-    h2:not(:first-of-type) {
-        page-break-before: always;
-    }
-    /* Ensure TOC starts on a new page if it exists in print */
-    .toc {
-        page-break-before: always;
-    }
-    /* SVG sizing for print */
-    svg {
-        max-height: 85vh;
-        max-width: 100%;
-        width: auto;
-        display: block;         /* Treat SVG as a block-level element */
-        margin: 0 auto;         /* Center horizontally by setting auto margins left/right */
-        page-break-inside: avoid; /* Ensure the entire SVG stays on one page */
-    }
-    /* Ensure each list item (guide step) starts on a new page, except the first */
-    ol li:not(:first-child) {
-        page-break-before: always;
-    }
-    /* Page break control for tables and rows in print */
-    table {
-        page-break-inside: auto; /* Allows tables to break across pages */
-    }
-    tr {
-        page-break-inside: avoid; /* Prevent individual table rows from breaking across pages */
-        page-break-after: auto; /* Allows page break after the row */
-    }
-    /* Prevent pre blocks (code snippets) from breaking across pages */
-    pre {
-        page-break-inside: avoid;
-    }
+
+  /* Ensure H2 elements (except the first) start on a new page */
+  h2:not(:first-of-type) {
+    page-break-before: always;
+  }
+
+  /* Ensure TOC starts on a new page if it exists in print */
+  .toc {
+    page-break-before: always;
+  }
+
+  /* SVG sizing for print */
+  svg {
+    max-height: 85vh !important;
+    max-width: 100% !important;
+    width: auto;
+    display: block;
+    /* Treat SVG as a block-level element */
+    margin: 0 auto;
+    /* Center horizontally by setting auto margins left/right */
+    page-break-inside: avoid;
+    /* Ensure the entire SVG stays on one page */
+  }
+
+  /* Hide reset button when printing */
+  .diagram-controls {
+    display: none;
+  }
+
+  /* Remove border and background for WorkflowGraph when printing */
+  #WorkflowGraph {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    height: 90vh !important;
+  }
+
+  /* Ensure each list item (guide step) starts on a new page, except the first */
+  ol li:not(:first-child) {
+    page-break-before: always;
+  }
+
+  /* Page break control for tables and rows in print */
+  table {
+    page-break-inside: auto;
+    /* Allows tables to break across pages */
+  }
+
+  tr {
+    page-break-inside: avoid;
+    /* Prevent individual table rows from breaking across pages */
+    page-break-after: auto;
+    /* Allows page break after the row */
+  }
+
+  /* Prevent pre blocks (code snippets) from breaking across pages */
+  pre {
+    page-break-inside: avoid;
+  }
 }
-  </style>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
-  />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script>
-    hljs.highlightAll();
-  </script>
-  <body>
-    <div id="documentation">
-      <img
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJWTXdhcmVfYnlfQnJvYWRjb21fbG9nbyIgZGF0YS1uYW1lPSJWTXdhcmUgYnkgQnJvYWRjb20gbG9nbyIgdmlld0JveD0iMCAwIDMwMiA5MCI+DQogICAgPGRlZnM+DQogICAgICA8c3R5bGU+DQogICAgICAgIC5jbHMtMSwgLmNscy0yLCAuY2xzLTMgew0KICAgICAgICAgIHN0cm9rZS13aWR0aDogMHB4Ow0KICAgICAgICB9DQogIA0KICAgICAgICAuY2xzLTIgew0KICAgICAgICAgIGZpbGw6ICNmZmY7DQogICAgICAgICAgb3BhY2l0eTogMDsNCiAgICAgICAgfQ0KICANCiAgICAgICAgLmNscy0zIHsNCiAgICAgICAgICBmaWxsOiAjNzI3MTc1Ow0KICAgICAgICB9DQogICAgICA8L3N0eWxlPg0KICAgIDwvZGVmcz4NCiAgICA8cmVjdCBjbGFzcz0iY2xzLTIiIHg9Ii00MC41MiIgeT0iLTQzLjc4IiB3aWR0aD0iMzcxLjA0IiBoZWlnaHQ9IjE3NC45NiIvPg0KICAgIDxnPg0KICAgICAgPGc+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTExNy42OSw4Mi40OXYyLjkyaC0xLjN2LTE5LjM3aDEuM3Y4Ljg2YzEuMTctMS43OCwyLjg5LTMuMzQsNS41Ny0zLjM0LDMuMjYsMCw2LjU4LDIuNjMsNi41OCw3LjAzdi4wNWMwLDQuNDEtMy4zMiw3LjA4LTYuNTgsNy4wOC0yLjcxLDAtNC40Ni0xLjU0LTUuNTctMy4yNFptMTAuNzUtMy43OXYtLjA1YzAtMy41Ni0yLjQ3LTUuODQtNS4zMS01Ljg0cy01LjUyLDIuMzYtNS41Miw1Ljgxdi4wNWMwLDMuNDgsMi43MSw1LjgxLDUuNTIsNS44MXM1LjMxLTIuMTUsNS4zMS01Ljc4WiIvPg0KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im0xNDMuODIsNzEuODhoMS40M2wtNS44NiwxNC4wMWMtMS4xOSwyLjg0LTIuNTcsMy44NS00LjUxLDMuODUtMS4wNCwwLTEuNzgtLjE5LTIuNjgtLjU4bC40NS0xLjE0Yy43Mi4zNCwxLjMuNSwyLjMxLjUsMS40MSwwLDIuMzMtLjgyLDMuMzQtMy4xOGwtNi41LTEzLjQ1aDEuNTFsNS42MiwxMi4xLDQuODgtMTIuMVoiLz4NCiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMTU2LjcxLDY2LjgzaDguMzNjMi4xMiwwLDMuNzkuNTgsNC44NiwxLjY0LjgyLjgyLDEuMjUsMS44MywxLjI1LDMuMDh2LjA1YzAsMi4yMy0xLjI3LDMuNDItMi42NSw0LjE0LDIuMTguNzQsMy42OSwxLjk5LDMuNjksNC41MXYuMDVjMCwzLjMyLTIuNzMsNS4wOS02Ljg3LDUuMDloLTguNnYtMTguNTdabTExLjE3LDUuMjVjMC0xLjQ2LTEuMTctMi4zNi0zLjI2LTIuMzZoLTQuN3Y0Ljk0aDQuNDZjMi4xLDAsMy41LS44MiwzLjUtMi41MnYtLjA1Wm0tMi43OSw1LjMzaC01LjE3djUuMDloNS40MWMyLjIzLDAsMy41OC0uODgsMy41OC0yLjU1di0uMDVjMC0xLjU3LTEuMjUtMi40OS0zLjgyLTIuNDlaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTE3NS41LDcxLjRoMy4yMXYzLjE2Yy44OC0yLjEsMi40OS0zLjUzLDQuOTYtMy40MnYzLjRoLS4xOWMtMi44MSwwLTQuNzgsMS44My00Ljc4LDUuNTR2NS4zM2gtMy4yMXYtMTQuMDFaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTE4NS4yMSw3OC40OHYtLjA1YzAtNC4wMSwzLjE4LTcuMzIsNy40OC03LjMyczcuNDYsMy4yNiw3LjQ2LDcuMjd2LjA1YzAsMy45OC0zLjE4LDcuMy03LjUxLDcuM3MtNy40My0zLjI2LTcuNDMtNy4yNFptMTEuNzMsMHYtLjA1YzAtMi40Ny0xLjc4LTQuNTEtNC4zLTQuNTFzLTQuMjIsMi4wMi00LjIyLDQuNDZ2LjA1YzAsMi40NCwxLjc4LDQuNDgsNC4yNyw0LjQ4czQuMjUtMi4wMiw0LjI1LTQuNDNaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTIwMi40OCw4MS4zOHYtLjA1YzAtMy4wMywyLjM2LTQuNTEsNS43OS00LjUxLDEuNTcsMCwyLjY4LjI0LDMuNzcuNTh2LS4zNGMwLTEuOTktMS4yMi0zLjA1LTMuNDgtMy4wNS0xLjU3LDAtMi43My4zNC00LjAxLjg4bC0uODUtMi41MmMxLjU0LS42OSwzLjA1LTEuMTQsNS4yOC0xLjE0LDIuMSwwLDMuNjYuNTYsNC42NCwxLjU3LDEuMDQsMS4wMSwxLjUxLDIuNDksMS41MSw0LjMzdjguMzFoLTMuMTN2LTEuNzVjLS45NiwxLjE0LTIuNDIsMi4wNC00LjU2LDIuMDQtMi42MywwLTQuOTYtMS41MS00Ljk2LTQuMzNabTkuNjEtMS4wMXYtLjk2Yy0uODItLjMyLTEuOTEtLjU2LTMuMTgtLjU2LTIuMDcsMC0zLjI5Ljg4LTMuMjksMi4zM3YuMDVjMCwxLjM1LDEuMTksMi4xMiwyLjczLDIuMTIsMi4xMiwwLDMuNzQtMS4yMiwzLjc0LTNaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTIxOC4yNiw3OC40M3YtLjA1YzAtNC42NCwzLjE2LTcuMjcsNi41LTcuMjcsMi4zMSwwLDMuNzcsMS4xNCw0Ljc4LDIuNDd2LTcuNTRoMy4yMXYxOS4zN2gtMy4yMXYtMi4zM2MtMS4wMywxLjQ2LTIuNDksMi42My00Ljc4LDIuNjMtMy4yOSwwLTYuNS0yLjYzLTYuNS03LjI3Wm0xMS4zMywwdi0uMDVjMC0yLjcxLTEuOTEtNC40OC00LjA2LTQuNDhzLTQuMDMsMS43LTQuMDMsNC40OHYuMDVjMCwyLjcxLDEuODYsNC40OCw0LjAzLDQuNDhzNC4wNi0xLjgsNC4wNi00LjQ4WiIvPg0KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im0yMzYuMDEsNzguNDh2LS4wNWMwLTMuOTgsMy4wOC03LjMyLDcuMy03LjMyLDIuNjMsMCw0LjI3Ljk4LDUuNiwyLjQybC0yLjAyLDIuMTVjLS45OC0xLjA0LTIuMDItMS43NS0zLjYxLTEuNzUtMi4zMywwLTQuMDYsMi4wMi00LjA2LDQuNDZ2LjA1YzAsMi40OSwxLjcyLDQuNDgsNC4xOSw0LjQ4LDEuNTEsMCwyLjYzLS42OSwzLjY0LTEuNzJsMS45NCwxLjkxYy0xLjM4LDEuNTQtMywyLjYzLTUuNzMsMi42My00LjE3LDAtNy4yNC0zLjI2LTcuMjQtNy4yNFoiLz4NCiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMjUwLjc2LDc4LjQ4di0uMDVjMC00LjAxLDMuMTgtNy4zMiw3LjQ4LTcuMzJzNy40NiwzLjI2LDcuNDYsNy4yN3YuMDVjMCwzLjk4LTMuMTgsNy4zLTcuNTEsNy4zcy03LjQzLTMuMjYtNy40My03LjI0Wm0xMS43Mywwdi0uMDVjMC0yLjQ3LTEuNzgtNC41MS00LjMtNC41MXMtNC4yMiwyLjAyLTQuMjIsNC40NnYuMDVjMCwyLjQ0LDEuNzgsNC40OCw0LjI3LDQuNDhzNC4yNS0yLjAyLDQuMjUtNC40M1oiLz4NCiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMjY4Ljk2LDcxLjRoMy4yMXYyLjEyYy45LTEuMjUsMi4xMi0yLjQyLDQuMjctMi40MiwyLjAyLDAsMy40NS45OCw0LjE5LDIuNDcsMS4xMS0xLjQ5LDIuNi0yLjQ3LDQuNzItMi40NywzLjA1LDAsNC45MSwxLjk0LDQuOTEsNS4zNnY4Ljk0aC0zLjIxdi03Ljk2YzAtMi4yMy0xLjAzLTMuNDItMi44NC0zLjQycy0zLDEuMjItMywzLjQ4djcuOTFoLTMuMjF2LTcuOTljMC0yLjE4LTEuMDYtMy40LTIuODQtMy40cy0zLDEuMzMtMywzLjQ4djcuOTFoLTMuMjF2LTE0LjAxWiIvPg0KICAgICAgPC9nPg0KICAgICAgPGcgaWQ9InZtd2FyZV9sb2dvX2dyYXkiIGRhdGEtbmFtZT0idm13YXJlIGxvZ28gZ3JheSI+DQogICAgICAgIDxnPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTEyOS44Myw0My4yM2wtMTMuMTYtMzYuNjRjLS4xNy0uNTEtLjQyLTEuMTgtLjQyLTEuNzYsMC0xLjU5LDEuMzQtMy4xLDMuMjctMy4xLDEuNjgsMCwyLjc3LDEuMSwzLjI3LDIuNjhsMTAuOSwzMS41NywxMC45OC0zMS42NmMuNS0xLjUsMS41MS0yLjU5LDMuMTgtMi41OWguMzRjMS43NiwwLDIuODYsMS4xLDMuMzYsMi41OWwxMC44OSwzMS42NiwxMS4wOC0zMS43NGMuNDItMS4zNCwxLjM0LTIuNTEsMy4xLTIuNTFzMy4xOCwxLjQyLDMuMTgsMy4wMmMwLC41OC0uMjUsMS4yNi0uNDIsMS43N2wtMTMuMjUsMzYuNzJjLS42OCwxLjkyLTIuMDIsMi45Mi0zLjUyLDIuOTJoLS4yNmMtMS42NywwLTIuOTMtMS0zLjUzLTIuOTJsLTEwLjgtMzEuMTQtMTAuOSwzMS4xNGMtLjU4LDEuOTItMS44NSwyLjkyLTMuNTIsMi45MmgtLjE3Yy0xLjU5LDAtMi45My0xLTMuNi0yLjkyIi8+DQogICAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJtMjI1Ljc1LDQuOTJjMC0xLjc3LDEuNDItMy4yOCwzLjE4LTMuMjgsMS44NSwwLDMuMjgsMS40MiwzLjI4LDMuMjh2Ny40NGMzLjE5LTcuMjIsMTAuMjYtMTAuNjMsMTQuOTUtMTAuNjMsMS45MywwLDMuMiwxLjQzLDMuMiwzLjI3cy0xLjE4LDMuMDItMi44NiwzLjI4Yy04LjQsMS4wMS0xNS4yOSw3LjMtMTUuMjksMTkuODN2MTQuNzJjMCwxLjc2LTEuMzQsMy4yNy0zLjE5LDMuMjdzLTMuMjctMS40My0zLjI3LTMuMjdWNC45MiIvPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTI3MS4xMSw0Ni41Yy0xMS42OSwwLTIxLjIzLTkuMDYtMjEuMjMtMjIuMzZ2LS4xN2MwLTEyLjM3LDguNjQtMjIuMzUsMjAuNDEtMjIuMzUsMTIuNTgsMCwxOS43NCwxMC4zOCwxOS43NCwyMS43OCwwLDEuNzQtMS40MSwyLjk5LTIuOTYsMi45OWgtMzAuNzdjLjg5LDkuMzEsNy4zOSwxNC41NCwxNC45NywxNC41NCw1LjI3LDAsOS4xMy0yLjA3LDEyLjI2LTQuOTkuNDktLjQxLDEuMDctLjc0LDEuODEtLjc0LDEuNTUsMCwyLjgsMS4yNSwyLjgsMi43NSwwLC43NC0uMzIsMS40OS0xLDIuMDctNC4wMywzLjktOC44LDYuNDgtMTYuMDQsNi40OG0xMi41OS0yNC44NmMtLjY2LTcuODEtNS4xMS0xNC42Mi0xMy41OC0xNC42Mi03LjQxLDAtMTMuMDEsNi4yMy0xMy44MiwxNC42MmgyNy4zOVoiLz4NCiAgICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Im0xNzkuOTEsMzMuMDV2LS4xN2MwLTkuMTIsNy41My0xMy45OCwxOC41LTEzLjk4LDUuNTIsMCw5LjQ1Ljc2LDEzLjMyLDEuODR2LTEuNTFjMC03Ljc5LTQuNzktMTEuODEtMTIuOS0xMS44MS00LjM2LDAtNi44OS41Ni0xMC4wOCwxLjk4LS40Mi4xNy0uODQuMjUtMS4xNy4yNS0xLjUxLDAtMi44Ni0xLjI2LTIuODYtMi43NiwwLTEuMzQuNTktMi4xNiwxLjc3LTIuNjksNC4yNi0xLjg1LDcuNDctMi40NiwxMy0yLjQ2LDYuMTEsMCwxMC44LDEuNTgsMTMuOTgsNC43NywyLjkzLDIuOTMsNC40NCw3LjEyLDQuNDQsMTIuNjR2MjMuODljMCwxLjg0LTEuMzQsMy4xOC0zLjExLDMuMThzLTMuMDgtMS4zNC0zLjA4LTMuMDJ2LTQuMTNjLTMuMDIsMy45NC04LjA0LDcuNDYtMTUuNjUsNy40Ni04LjA0LDAtMTYuMTctNC42MS0xNi4xNy0xMy40OG0zMS45LTMuMzV2LTQuMThjLTMuMTgtLjkyLTcuNDYtMS44NS0xMi43My0xLjg1LTguMTEsMC0xMi42NCwzLjUzLTEyLjY0LDguOTZ2LjE3YzAsNS40NCw1LjAyLDguNjIsMTAuODgsOC42Miw3Ljk1LDAsMTQuNDgtNC44NiwxNC40OC0xMS43MiIvPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTEyLjUzLDQuNDRDMTEuMTEsMS4zNCw3LjYxLS4wOCw0LjM0LDEuMzksMS4wNywyLjg0LS4xNCw2LjQ3LDEuMzQsOS41OWwxMy43NCwyOS44NmMyLjE2LDQuNjgsNC40NCw3LjE0LDguNzEsNy4xNCw0LjU2LDAsNi41Ni0yLjY4LDguNzEtNy4xNCwwLDAsMTEuOTktMjYuMSwxMi4xLTI2LjM2LjEzLS4yOC41MS0xLjEyLDEuNzMtMS4xMiwxLjAzLjAxLDEuOS44MywxLjksMS45M3YyNS41M2MwLDMuOTMsMi4xOCw3LjE2LDYuMzgsNy4xNnM2LjQ2LTMuMjMsNi40Ni03LjE2di0yMC44OGMwLTQuMDMsMi44OS02LjY0LDYuODItNi42NHM2LjU1LDIuNyw2LjU1LDYuNjR2MjAuODhjMCwzLjkzLDIuMTksNy4xNiw2LjM4LDcuMTZzNi40Ny0zLjIzLDYuNDctNy4xNnYtMjAuODhjMC00LjAzLDIuODgtNi42NCw2LjgxLTYuNjRzNi41NSwyLjcsNi41NSw2LjY0djIwLjg4YzAsMy45MywyLjE4LDcuMTYsNi4zOCw3LjE2czYuNDctMy4yMyw2LjQ3LTcuMTZWMTUuNjZjMC04Ljc0LTcuMDItMTQuODYtMTUuNDctMTQuODZzLTEzLjczLDUuODUtMTMuNzMsNS44NWMtMi44MS0zLjY0LTYuNjgtNS44NC0xMy4yNC01Ljg0LTYuOTIsMC0xMi45Nyw1Ljg0LTEyLjk3LDUuODQtMi44Mi0zLjY0LTcuNi01Ljg0LTExLjU2LTUuODQtNi4xMywwLTExLDIuNjktMTMuOTYsOS40OWwtOC43OCwyMC42OEwxMi41Myw0LjQ0Ii8+DQogICAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJtMjkwLjU1LDcuMDN2LS4wNGMwLTIuOTIsMi4zNy01LjM4LDUuMzUtNS4zOHM1LjM2LDIuNDMsNS4zNiw1LjM1di4wM2MwLDIuOTMtMi4zNiw1LjM5LTUuMzYsNS4zOXMtNS4zNS0yLjQyLTUuMzUtNS4zNW05LjY4LS4wNGgwYzAtMi40MS0xLjg1LTQuMzktNC4zMy00LjM5cy00LjM0LDItNC4zNCw0LjM5di4wM2MwLDIuNCwxLjg2LDQuMzYsNC4zNCw0LjM2czQuMzMtMiw0LjMzLTQuNCIvPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTI5My44Niw0Ljg4YzAtLjMyLjI1LS41OC41Ny0uNThoMS43OWMuNjcsMCwxLjE5LjE5LDEuNTEuNTQuMy4yOC40Ni43LjQ2LDEuMTh2LjAyYzAsLjgyLS40MiwxLjMyLTEuMDQsMS41OGwuNzkuOTZjLjExLjE0LjE4LjI2LjE4LjQzLDAsLjMxLS4yNi41My0uNTQuNTMtLjI1LDAtLjQyLS4xMy0uNTYtLjI5bC0xLjExLTEuNDFoLS45MXYxLjEzYzAsLjMyLS4yNS41Ny0uNTcuNTdzLS41Ny0uMjUtLjU3LS41N3YtNC4wOVptMi4zLDEuOTRjLjU2LDAsLjg3LS4yOC44Ny0uNzN2LS4wMmMwLS40OC0uMzMtLjc0LS44OC0uNzRoLTEuMTR2MS40OWgxLjE1WiIvPg0KICAgICAgICA8L2c+DQogICAgICA8L2c+DQogICAgPC9nPg0KICA8L3N2Zz4="
-        style="height: 2.5em; float: right"
-      />
-      <h1>Test</h1>
-      <h2><a name="Workflow Overview">Workflow Overview</a></h2>
-      <table>
-        <tr>
-          <th class="left">ID</th>
-          <td class="left">df889c3a-8bee-4826-adf1-787f9bc166b2</td>
-        </tr>
-        <tr>
-          <th class="left">Description</th>
-          <td class="left">This is a test workflow that has each type of element on the canvas</td>
-        </tr>
-        <tr>
-          <th class="left">Path</th>
-          <td class="left">Library - Custom</td>
-        </tr>
-        <tr>
-          <th class="left">Category</th>
-          <td class="left">Library - Custom</td>
-        </tr>
-        <tr>
-          <th class="left">Version</th>
-          <td class="left"><code>0.0.1</code></td>
-        </tr>
-        <tr>
-          <th class="left">Author</th>
-          <td class="left">System Generated</td>
-        </tr>
-        <tr>
-          <th class="left">Date</th>
-          <td class="left">Thu Jun 12 2025 02:28:59 GMT-0000 (GMT)</td>
-        </tr>
-      </table>
-      <div class="toc">
-        <h2 id="table-of-contents">Table of Contents</h2>
+</style>
+<body>
+  <div id="documentation">
+    <img
+      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJWTXdhcmVfYnlfQnJvYWRjb21fbG9nbyIgZGF0YS1uYW1lPSJWTXdhcmUgYnkgQnJvYWRjb20gbG9nbyIgdmlld0JveD0iMCAwIDMwMiA5MCI+DQogICAgPGRlZnM+DQogICAgICA8c3R5bGU+DQogICAgICAgIC5jbHMtMSwgLmNscy0yLCAuY2xzLTMgew0KICAgICAgICAgIHN0cm9rZS13aWR0aDogMHB4Ow0KICAgICAgICB9DQogIA0KICAgICAgICAuY2xzLTIgew0KICAgICAgICAgIGZpbGw6ICNmZmY7DQogICAgICAgICAgb3BhY2l0eTogMDsNCiAgICAgICAgfQ0KICANCiAgICAgICAgLmNscy0zIHsNCiAgICAgICAgICBmaWxsOiAjNzI3MTc1Ow0KICAgICAgICB9DQogICAgICA8L3N0eWxlPg0KICAgIDwvZGVmcz4NCiAgICA8cmVjdCBjbGFzcz0iY2xzLTIiIHg9Ii00MC41MiIgeT0iLTQzLjc4IiB3aWR0aD0iMzcxLjA0IiBoZWlnaHQ9IjE3NC45NiIvPg0KICAgIDxnPg0KICAgICAgPGc+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTExNy42OSw4Mi40OXYyLjkyaC0xLjN2LTE5LjM3aDEuM3Y4Ljg2YzEuMTctMS43OCwyLjg5LTMuMzQsNS41Ny0zLjM0LDMuMjYsMCw2LjU4LDIuNjMsNi41OCw3LjAzdi4wNWMwLDQuNDEtMy4zMiw3LjA4LTYuNTgsNy4wOC0yLjcxLDAtNC40Ni0xLjU0LTUuNTctMy4yNFptMTAuNzUtMy43OXYtLjA1YzAtMy41Ni0yLjQ3LTUuODQtNS4zMS01Ljg0cy01LjUyLDIuMzYtNS41Miw1Ljgxdi4wNWMwLDMuNDgsMi43MSw1LjgxLDUuNTIsNS44MXM1LjMxLTIuMTUsNS4zMS01Ljc4WiIvPg0KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im0xNDMuODIsNzEuODhoMS40M2wtNS44NiwxNC4wMWMtMS4xOSwyLjg0LTIuNTcsMy44NS00LjUxLDMuODUtMS4wNCwwLTEuNzgtLjE5LTIuNjgtLjU4bC40NS0xLjE0Yy43Mi4zNCwxLjMuNSwyLjMxLjUsMS40MSwwLDIuMzMtLjgyLDMuMzQtMy4xOGwtNi41LTEzLjQ1aDEuNTFsNS42MiwxMi4xLDQuODgtMTIuMVoiLz4NCiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMTU2LjcxLDY2LjgzaDguMzNjMi4xMiwwLDMuNzkuNTgsNC44NiwxLjY0LjgyLjgyLDEuMjUsMS44MywxLjI1LDMuMDh2LjA1YzAsMi4yMy0xLjI3LDMuNDItMi42NSw0LjE0LDIuMTguNzQsMy42OSwxLjk5LDMuNjksNC41MXYuMDVjMCwzLjMyLTIuNzMsNS4wOS02Ljg3LDUuMDloLTguNnYtMTguNTdabTExLjE3LDUuMjVjMC0xLjQ2LTEuMTctMi4zNi0zLjI2LTIuMzZoLTQuN3Y0Ljk0aDQuNDZjMi4xLDAsMy41LS44MiwzLjUtMi41MnYtLjA1Wm0tMi43OSw1LjMzaC01LjE3djUuMDloNS40MWMyLjIzLDAsMy41OC0uODgsMy41OC0yLjU1di0uMDVjMC0xLjU3LTEuMjUtMi40OS0zLjgyLTIuNDlaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTE3NS41LDcxLjRoMy4yMXYzLjE2Yy44OC0yLjEsMi40OS0zLjUzLDQuOTYtMy40MnYzLjRoLS4xOWMtMi44MSwwLTQuNzgsMS44My00Ljc4LDUuNTR2NS4zM2gtMy4yMXYtMTQuMDFaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTE4NS4yMSw3OC40OHYtLjA1YzAtNC4wMSwzLjE4LTcuMzIsNy40OC03LjMyczcuNDYsMy4yNiw3LjQ2LDcuMjd2LjA1YzAsMy45OC0zLjE4LDcuMy03LjUxLDcuM3MtNy40My0zLjI2LTcuNDMtNy4yNFptMTEuNzMsMHYtLjA1YzAtMi40Ny0xLjc4LTQuNTEtNC4zLTQuNTFzLTQuMjIsMi4wMi00LjIyLDQuNDZ2LjA1YzAsMi40NCwxLjc4LDQuNDgsNC4yNyw0LjQ4czQuMjUtMi4wMiw0LjI1LTQuNDNaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTIwMi40OCw4MS4zOHYtLjA1YzAtMy4wMywyLjM2LTQuNTEsNS43OS00LjUxLDEuNTcsMCwyLjY4LjI0LDMuNzcuNTh2LS4zNGMwLTEuOTktMS4yMi0zLjA1LTMuNDgtMy4wNS0xLjU3LDAtMi43My4zNC00LjAxLjg4bC0uODUtMi41MmMxLjU0LS42OSwzLjA1LTEuMTQsNS4yOC0xLjE0LDIuMSwwLDMuNjYuNTYsNC42NCwxLjU3LDEuMDQsMS4wMSwxLjUxLDIuNDksMS41MSw0LjMzdjguMzFoLTMuMTN2LTEuNzVjLS45NiwxLjE0LTIuNDIsMi4wNC00LjU2LDIuMDQtMi42MywwLTQuOTYtMS41MS00Ljk2LTQuMzNabTkuNjEtMS4wMXYtLjk2Yy0uODItLjMyLTEuOTEtLjU2LTMuMTgtLjU2LTIuMDcsMC0zLjI5Ljg4LTMuMjksMi4zM3YuMDVjMCwxLjM1LDEuMTksMi4xMiwyLjczLDIuMTIsMi4xMiwwLDMuNzQtMS4yMiwzLjc0LTNaIi8+DQogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0ibTIxOC4yNiw3OC40M3YtLjA1YzAtNC42NCwzLjE2LTcuMjcsNi41LTcuMjcsMi4zMSwwLDMuNzcsMS4xNCw0Ljc4LDIuNDd2LTcuNTRoMy4yMXYxOS4zN2gtMy4yMXYtMi4zM2MtMS4wMywxLjQ2LTIuNDksMi42My00Ljc4LDIuNjMtMy4yOSwwLTYuNS0yLjYzLTYuNS03LjI3Wm0xMS4zMywwdi0uMDVjMC0yLjcxLTEuOTEtNC40OC00LjA2LTQuNDhzLTQuMDMsMS43LTQuMDMsNC40OHYuMDVjMCwyLjcxLDEuODYsNC40OCw0LjAzLDQuNDhzNC4wNi0xLjgsNC4wNi00LjQ4WiIvPg0KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im0yMzYuMDEsNzguNDh2LS4wNWMwLTMuOTgsMy4wOC03LjMyLDcuMy03LjMyLDIuNjMsMCw0LjI3Ljk4LDUuNiwyLjQybC0yLjAyLDIuMTVjLS45OC0xLjA0LTIuMDItMS43NS0zLjYxLTEuNzUtMi4zMywwLTQuMDYsMi4wMi00LjA2LDQuNDZ2LjA1YzAsMi40OSwxLjcyLDQuNDgsNC4xOSw0LjQ4LDEuNTEsMCwyLjYzLS42OSwzLjY0LTEuNzJsMS45NCwxLjkxYy0xLjM4LDEuNTQtMywyLjYzLTUuNzMsMi42My00LjE3LDAtNy4yNC0zLjI2LTcuMjQtNy4yNFoiLz4NCiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMjUwLjc2LDc4LjQ4di0uMDVjMC00LjAxLDMuMTgtNy4zMiw3LjQ4LTcuMzJzNy40NiwzLjI2LDcuNDYsNy4yN3YuMDVjMCwzLjk4LTMuMTgsNy4zLTcuNTEsNy4zcy03LjQzLTMuMjYtNy40My03LjI0Wm0xMS43Mywwdi0uMDVjMC0yLjQ3LTEuNzgtNC41MS00LjMtNC41MXMtNC4yMiwyLjAyLTQuMjIsNC40NnYuMDVjMCwyLjQ0LDEuNzgsNC40OCw0LjI3LDQuNDhzNC4yNS0yLjAyLDQuMjUtNC40M1oiLz4NCiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtMjY4Ljk2LDcxLjRoMy4yMXYyLjEyYy45LTEuMjUsMi4xMi0yLjQyLDQuMjctMi40MiwyLjAyLDAsMy40NS45OCw0LjE5LDIuNDcsMS4xMS0xLjQ5LDIuNi0yLjQ3LDQuNzItMi40NywzLjA1LDAsNC45MSwxLjk0LDQuOTEsNS4zNnY4Ljk0aC0zLjIxdi03Ljk2YzAtMi4yMy0xLjAzLTMuNDItMi44NC0zLjQycy0zLDEuMjItMywzLjQ4djcuOTFoLTMuMjF2LTcuOTljMC0yLjE4LTEuMDYtMy40LTIuODQtMy40cy0zLDEuMzMtMywzLjQ4djcuOTFoLTMuMjF2LTE0LjAxWiIvPg0KICAgICAgPC9nPg0KICAgICAgPGcgaWQ9InZtd2FyZV9sb2dvX2dyYXkiIGRhdGEtbmFtZT0idm13YXJlIGxvZ28gZ3JheSI+DQogICAgICAgIDxnPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTEyOS44Myw0My4yM2wtMTMuMTYtMzYuNjRjLS4xNy0uNTEtLjQyLTEuMTgtLjQyLTEuNzYsMC0xLjU5LDEuMzQtMy4xLDMuMjctMy4xLDEuNjgsMCwyLjc3LDEuMSwzLjI3LDIuNjhsMTAuOSwzMS41NywxMC45OC0zMS42NmMuNS0xLjUsMS41MS0yLjU5LDMuMTgtMi41OWguMzRjMS43NiwwLDIuODYsMS4xLDMuMzYsMi41OWwxMC44OSwzMS42NiwxMS4wOC0zMS43NGMuNDItMS4zNCwxLjM0LTIuNTEsMy4xLTIuNTFzMy4xOCwxLjQyLDMuMTgsMy4wMmMwLC41OC0uMjUsMS4yNi0uNDIsMS43N2wtMTMuMjUsMzYuNzJjLS42OCwxLjkyLTIuMDIsMi45Mi0zLjUyLDIuOTJoLS4yNmMtMS42NywwLTIuOTMtMS0zLjUzLTIuOTJsLTEwLjgtMzEuMTQtMTAuOSwzMS4xNGMtLjU4LDEuOTItMS44NSwyLjkyLTMuNTIsMi45MmgtLjE3Yy0xLjU5LDAtMi45My0xLTMuNi0yLjkyIi8+DQogICAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJtMjI1Ljc1LDQuOTJjMC0xLjc3LDEuNDItMy4yOCwzLjE4LTMuMjgsMS44NSwwLDMuMjgsMS40MiwzLjI4LDMuMjh2Ny40NGMzLjE5LTcuMjIsMTAuMjYtMTAuNjMsMTQuOTUtMTAuNjMsMS45MywwLDMuMiwxLjQzLDMuMiwzLjI3cy0xLjE4LDMuMDItMi44NiwzLjI4Yy04LjQsMS4wMS0xNS4yOSw3LjMtMTUuMjksMTkuODN2MTQuNzJjMCwxLjc2LTEuMzQsMy4yNy0zLjE5LDMuMjdzLTMuMjctMS40My0zLjI3LTMuMjdWNC45MiIvPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTI3MS4xMSw0Ni41Yy0xMS42OSwwLTIxLjIzLTkuMDYtMjEuMjMtMjIuMzZ2LS4xN2MwLTEyLjM3LDguNjQtMjIuMzUsMjAuNDEtMjIuMzUsMTIuNTgsMCwxOS43NCwxMC4zOCwxOS43NCwyMS43OCwwLDEuNzQtMS40MSwyLjk5LTIuOTYsMi45OWgtMzAuNzdjLjg5LDkuMzEsNy4zOSwxNC41NCwxNC45NywxNC41NCw1LjI3LDAsOS4xMy0yLjA3LDEyLjI2LTQuOTkuNDktLjQxLDEuMDctLjc0LDEuODEtLjc0LDEuNTUsMCwyLjgsMS4yNSwyLjgsMi43NSwwLC43NC0uMzIsMS40OS0xLDIuMDctNC4wMywzLjktOC44LDYuNDgtMTYuMDQsNi40OG0xMi41OS0yNC44NmMtLjY2LTcuODEtNS4xMS0xNC42Mi0xMy41OC0xNC42Mi03LjQxLDAtMTMuMDEsNi4yMy0xMy44MiwxNC42MmgyNy4zOVoiLz4NCiAgICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Im0xNzkuOTEsMzMuMDV2LS4xN2MwLTkuMTIsNy41My0xMy45OCwxOC41LTEzLjk4LDUuNTIsMCw5LjQ1Ljc2LDEzLjMyLDEuODR2LTEuNTFjMC03Ljc5LTQuNzktMTEuODEtMTIuOS0xMS44MS00LjM2LDAtNi44OS41Ni0xMC4wOCwxLjk4LS40Mi4xNy0uODQuMjUtMS4xNy4yNS0xLjUxLDAtMi44Ni0xLjI2LTIuODYtMi43NiwwLTEuMzQuNTktMi4xNiwxLjc3LTIuNjksNC4yNi0xLjg1LDcuNDctMi40NiwxMy0yLjQ2LDYuMTEsMCwxMC44LDEuNTgsMTMuOTgsNC43NywyLjkzLDIuOTMsNC40NCw3LjEyLDQuNDQsMTIuNjR2MjMuODljMCwxLjg0LTEuMzQsMy4xOC0zLjExLDMuMThzLTMuMDgtMS4zNC0zLjA4LTMuMDJ2LTQuMTNjLTMuMDIsMy45NC04LjA0LDcuNDYtMTUuNjUsNy40Ni04LjA0LDAtMTYuMTctNC42MS0xNi4xNy0xMy40OG0zMS45LTMuMzV2LTQuMThjLTMuMTgtLjkyLTcuNDYtMS44NS0xMi43My0xLjg1LTguMTEsMC0xMi42NCwzLjUzLTEyLjY0LDguOTZ2LjE3YzAsNS40NCw1LjAyLDguNjIsMTAuODgsOC42Miw3Ljk1LDAsMTQuNDgtNC44NiwxNC40OC0xMS43MiIvPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTEyLjUzLDQuNDRDMTEuMTEsMS4zNCw3LjYxLS4wOCw0LjM0LDEuMzksMS4wNywyLjg0LS4xNCw2LjQ3LDEuMzQsOS41OWwxMy43NCwyOS44NmMyLjE2LDQuNjgsNC40NCw3LjE0LDguNzEsNy4xNCw0LjU2LDAsNi41Ni0yLjY4LDguNzEtNy4xNCwwLDAsMTEuOTktMjYuMSwxMi4xLTI2LjM2LjEzLS4yOC41MS0xLjEyLDEuNzMtMS4xMiwxLjAzLjAxLDEuOS44MywxLjksMS45M3YyNS41M2MwLDMuOTMsMi4xOCw3LjE2LDYuMzgsNy4xNnM2LjQ2LTMuMjMsNi40Ni03LjE2di0yMC44OGMwLTQuMDMsMi44OS02LjY0LDYuODItNi42NHM2LjU1LDIuNyw2LjU1LDYuNjR2MjAuODhjMCwzLjkzLDIuMTksNy4xNiw2LjM4LDcuMTZzNi40Ny0zLjIzLDYuNDctNy4xNnYtMjAuODhjMC00LjAzLDIuODgtNi42NCw2LjgxLTYuNjRzNi41NSwyLjcsNi41NSw2LjY0djIwLjg4YzAsMy45MywyLjE4LDcuMTYsNi4zOCw3LjE2czYuNDctMy4yMyw2LjQ3LTcuMTZWMTUuNjZjMC04Ljc0LTcuMDItMTQuODYtMTUuNDctMTQuODZzLTEzLjczLDUuODUtMTMuNzMsNS44NWMtMi44MS0zLjY0LTYuNjgtNS44NC0xMy4yNC01Ljg0LTYuOTIsMC0xMi45Nyw1Ljg0LTEyLjk3LDUuODQtMi44Mi0zLjY0LTcuNi01Ljg0LTExLjU2LTUuODQtNi4xMywwLTExLDIuNjktMTMuOTYsOS40OWwtOC43OCwyMC42OEwxMi41Myw0LjQ0Ii8+DQogICAgICAgICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJtMjkwLjU1LDcuMDN2LS4wNGMwLTIuOTIsMi4zNy01LjM4LDUuMzUtNS4zOHM1LjM2LDIuNDMsNS4zNiw1LjM1di4wM2MwLDIuOTMtMi4zNiw1LjM5LTUuMzYsNS4zOXMtNS4zNS0yLjQyLTUuMzUtNS4zNW05LjY4LS4wNGgwYzAtMi40MS0xLjg1LTQuMzktNC4zMy00LjM5cy00LjM0LDItNC4zNCw0LjM5di4wM2MwLDIuNCwxLjg2LDQuMzYsNC4zNCw0LjM2czQuMzMtMiw0LjMzLTQuNCIvPg0KICAgICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0ibTI5My44Niw0Ljg4YzAtLjMyLjI1LS41OC41Ny0uNThoMS43OWMuNjcsMCwxLjE5LjE5LDEuNTEuNTQuMy4yOC40Ni43LjQ2LDEuMTh2LjAyYzAsLjgyLS40MiwxLjMyLTEuMDQsMS41OGwuNzkuOTZjLjExLjE0LjE4LjI2LjE4LjQzLDAsLjMxLS4yNi41My0uNTQuNTMtLjI1LDAtLjQyLS4xMy0uNTYtLjI5bC0xLjExLTEuNDFoLS45MXYxLjEzYzAsLjMyLS4yNS41Ny0uNTcuNTdzLS41Ny0uMjUtLjU3LS41N3YtNC4wOVptMi4zLDEuOTRjLjU2LDAsLjg3LS4yOC44Ny0uNzN2LS4wMmMwLS40OC0uMzMtLjc0LS44OC0uNzRoLTEuMTR2MS40OWgxLjE1WiIvPg0KICAgICAgICA8L2c+DQogICAgICA8L2c+DQogICAgPC9nPg0KICA8L3N2Zz4="
+      style="height: 2.5em; float: right" />
+    <h1>Test</h1>
+    <h2><a name="Workflow Overview">Workflow Overview</a></h2>
+    <table>
+      <tr>
+        <th class="left">ID</th>
+        <td class="left">df889c3a-8bee-4826-adf1-787f9bc166b2</td>
+      </tr>
+      <tr>
+        <th class="left">Description</th>
+        <td class="left">This is a test workflow that has each type of element on the canvas</td>
+      </tr>
+      <tr>
+        <th class="left">Path</th>
+        <td class="left">Library - Custom</td>
+      </tr>
+      <tr>
+        <th class="left">Category</th>
+        <td class="left">Library - Custom</td>
+      </tr>
+      <tr>
+        <th class="left">Version</th>
+        <td class="left"><code>0.0.1</code></td>
+      </tr>
+      <tr>
+        <th class="left">Author</th>
+        <td class="left">System Generated</td>
+      </tr>
+      <tr>
+        <th class="left">Date</th>
+        <td class="left">Fri Jun 13 2025 05:07:24 GMT-0000 (GMT)</td>
+      </tr>
+    </table>
+    <div class="toc">
+      <h2 id="table-of-contents">Table of Contents</h2>
+      <ul>
+        <li><a href="#Workflow Overview">Workflow Overview</a></li>
+        <li><a href="#Diagram">Diagram</a></li>
+        <li><a href="#Inputs">Inputs</a></li>
+        <li><a href="#Outputs">Outputs</a></li>
+        <li><a href="#Attributes">Attributes (Variables)</a></li>
+        <li><a href="#Usages">Usages</a></li>
+        <li><a href="#Dependencies">Dependencies</a></li>
+        <li><a href="#Workflow Steps">Workflow Steps</a></li>
         <ul>
-          <li><a href="#Workflow Overview">Workflow Overview</a></li>
-          <li><a href="#Diagram">Diagram</a></li>
-          <li><a href="#Inputs">Inputs</a></li>
-          <li><a href="#Outputs">Outputs</a></li>
-          <li><a href="#Attributes">Attributes (Variables)</a></li>
-          <li><a href="#Usages">Usages</a></li>
-          <li><a href="#Dependencies">Dependencies</a></li>
-          <li><a href="#Workflow Steps">Workflow Steps</a></li>
-          <ul>
-            <li><a class='nav-link' href='#item1'>Step 1 - Scriptable task (Main path)</a></li>
+          <li><a class='nav-link' href='#item1'>Step 1 - Scriptable task (Main path)</a></li>
 
 <li><a class='nav-link' href='#item2'>Step 2 - getHost (Main path)</a></li>
 
@@ -420,11 +755,11 @@ tfoot {
 
 <li><a class='nav-link' href='#item3'>Step 35 - End workflow (Error Handler path)</a></li>
 
-          </ul>
         </ul>
-      </div>
-      <h2><a name="Diagram">Diagram</a></h2>
-      <div class="graph" id="WorkflowGraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+      </ul>
+    </div>
+    <h2><a name="Diagram">Diagram</a></h2>
+    <div class="graph" id="WorkflowGraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.44.0 (20200518.1210)
  -->
@@ -1419,12 +1754,15 @@ tfoot {
 </g>
 </g>
 </svg></div>
-      <h2><a name="Inputs">Inputs</a></h2>
-      <p>No Inputs defined.</p>
-      <h2><a name="Outputs">Outputs</a></h2>
-      <p>No Outputs defined.</p>
-      <h2><a name="Attributes">Attributes (Variables)</a></h2>
-      <table class='table'>
+    <div class="diagram-controls">
+      <button id="resetDiagramBtn">Reset View</button>
+    </div>
+    <h2><a name="Inputs">Inputs</a></h2>
+    <p>No Inputs defined.</p>
+    <h2><a name="Outputs">Outputs</a></h2>
+    <p>No Outputs defined.</p>
+    <h2><a name="Attributes">Attributes (Variables)</a></h2>
+    <table class='table'>
 <tr><th class='left'>Name</th><th class='left'>Type</th><th class='left'>Description</th><th class='left'>Value</th></tr>
 <tr><td>variableString</td><td>string</td><td>-</td><td></td></tr>
 <tr><td>query</td><td>string</td><td>-</td><td></td></tr>
@@ -1454,8 +1792,8 @@ tfoot {
 <tr><td>scheduledTask</td><td>Task</td><td>-</td><td>-</td></tr>
 <tr><td>resourceElement</td><td>ResourceElement</td><td>-</td><td>Test.md</td></tr>
 </table>
-      <h2><a name="Usages">Usages</a></h2>
-      <table class='table'>
+    <h2><a name="Usages">Usages</a></h2>
+    <table class='table'>
 <tr><th class='left'>Name</th><th class='left'>Type</th><th class='left'>Location</th></tr>
 <tr><td class='left'>Test - df889c3a-8bee-4826-adf1-787f9bc166b2</td><td class='left'>Workflow</td><td class='left'>SCHEMA - item16</td></tr>
 <tr><td class='left'>Test - df889c3a-8bee-4826-adf1-787f9bc166b2</td><td class='left'>Workflow</td><td class='left'>SCHEMA - item17</td></tr>
@@ -1464,8 +1802,8 @@ tfoot {
 <tr><td class='left'>Test - df889c3a-8bee-4826-adf1-787f9bc166b2</td><td class='left'>Workflow</td><td class='left'>SCHEMA - item20</td></tr>
 <tr><td class='left'>Test - df889c3a-8bee-4826-adf1-787f9bc166b2</td><td class='left'>Workflow</td><td class='left'>SCHEMA - item36</td></tr>
 </table>
-      <h2><a name="Dependencies">Dependencies</a></h2>
-      <table class='table'>
+    <h2><a name="Dependencies">Dependencies</a></h2>
+    <table class='table'>
 <tr><th class='left'>Name</th><th class='left'>Type</th><th class='left'>Location</th></tr>
 <tr><td class='left'>3808259c-7d5f-4a4f-b10b-eaa1c4a9b756 - 3808259c-7d5f-4a4f-b10b-eaa1c4a9b756</td><td class='left'>ResourceElement</td><td class='left'>ATTRIBUTE - resourceElement</td></tr>
 <tr><td class='left'>com.broadcom.pso.vra.host/getHost</td><td class='left'>ScriptModule</td><td class='left'>SCHEMA - item2</td></tr>
@@ -1477,17 +1815,17 @@ tfoot {
 <tr><td class='left'>57c2229a-c3d9-4fd3-85f0-1539d41514f0</td><td class='left'>Workflow</td><td class='left'>SCHEMA - item24</td></tr>
 <tr><td class='left'>df889c3a-8bee-4826-adf1-787f9bc166b2</td><td class='left'>Workflow</td><td class='left'>SCHEMA - item36</td></tr>
 </table>
-      <h2><a name="Workflow Steps">Workflow Steps</a></h2>
-      <div class="guide">
-        <ol>
-          <li><h3><a name='item1'>Step 1 - Scriptable task (Main path)</a></h3>
+    <h2><a name="Workflow Steps">Workflow Steps</a></h2>
+    <div class="guide">
+      <ol>
+        <li><h3><a name='item1'>Step 1 - Scriptable task (Main path)</a></h3>
 <table class='table'>
 <tr><th class=''>Name</th><td class=''>item1</td></tr>
 <tr><th class=''>Display Name</th><td class=''>Scriptable task</td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Simple task with custom script capability.</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>// Do Nothing
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>// Do Nothing
 variableString = variableString</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>variableString</td><td><code>string</code></td><td></td><td>variableString</td></tr>
@@ -1507,8 +1845,8 @@ variableString = variableString</code></pre></td></tr>
 <tr><th class=''>Description</th><td class=''>Add a note to the workflow schema.</td></tr>
 <tr><th class=''>Script Module</th><td class=''>com.broadcom.pso.vra.host/getHost</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto generated script, cannot be modified !
-actionResult = System.getModule("com.broadcom.pso.vra.host").getHost(query);
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto generated script, cannot be modified !
+actionResult = System.getModule(&quot;com.broadcom.pso.vra.host&quot;).getHost(query);
 </code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Use only if you have multiple VRA Connections</td><td>query</td></tr>
@@ -1521,14 +1859,16 @@ actionResult = System.getModule("com.broadcom.pso.vra.host").getHost(query);
 <tr><th class=''>Used Actions</th><td class=''><table class='table'>
 <tr><th>Name</th><td>getHost</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vra.host</td></tr>
-<tr><th>Version</th><td><code>0.0.0</code></td></tr>
+<tr><th>ID</th><td>eaf88276-8765-4e5b-b2e2-24125a792ff6</td></tr>
+<tr><th>Version</th><td><code>0.1.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
 <tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Use only if you have multiple VRA Connections</td></tr>
 </table></li></td></tr>
 <tr><th>Output</th><td>VRA:Host</td></tr>
-<tr><th>Script</th><td><pre><code class='language-javascript'>// Search VRA:Host using query
-var allVraHost = Server.findAllForType("VRA:Host");
+<tr><th>Runtime Environment</th><td>Javascript</td></tr>
+<tr><th>Script</th><td class='script'><pre><code class='language-javascript'>// Search VRA:Host using query
+var allVraHost = Server.findAllForType(&quot;VRA:Host&quot;);
 
 // Return if only 1 connection found
 if (allVraHost.length == 1) {
@@ -1536,7 +1876,7 @@ if (allVraHost.length == 1) {
 } else {
     // Set the query to Default if blank
     if (!query) {
-        query = "Default";
+        query = &quot;Default&quot;;
     }
     for each(var host in allVraHost) {
         if (host.name.match(query)) {
@@ -1548,7 +1888,7 @@ if (allVraHost.length == 1) {
     if (vraHost) {
         return vraHost
     } else {
-        throw "Unable to find vRA Host"
+        throw &quot;Unable to find vRA Host&quot;
     }
 }</code></pre></td></tr>
 </table></li><br>
@@ -1561,7 +1901,7 @@ if (allVraHost.length == 1) {
 <tr><th class=''>Display Name</th><td class=''>Decision</td></tr>
 <tr><th class=''>Type</th><td class=''>custom-condition</td></tr>
 <tr><th class=''>Description</th><td class=''>Custom decision based on a custom script.</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>return true;</code></pre></td></tr>
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>return true;</code></pre></td></tr>
 <tr><th class=''>Condition True</th><td class=''>item16</td></tr>
 <tr><th class=''>Condition False</th><td class=''>item21</td></tr>
 </table></li>
@@ -1609,10 +1949,10 @@ if (allVraHost.length == 1) {
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Start an asynchronous workflow.</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto generated script, cannot be modified !
-var workflowToLaunch = Server.getWorkflowWithId("df889c3a-8bee-4826-adf1-787f9bc166b2");
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto generated script, cannot be modified !
+var workflowToLaunch = Server.getWorkflowWithId(&quot;df889c3a-8bee-4826-adf1-787f9bc166b2&quot;);
 if (workflowToLaunch == null) {
-	throw "Workflow not found";
+	throw &quot;Workflow not found&quot;;
 }
 
 var workflowParameters = new Properties();
@@ -1631,10 +1971,10 @@ wfToken = workflowToLaunch.execute(workflowParameters);
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Schedule a workflow and create a task.</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto generated script, cannot be modified !
-var workflowToLaunch = Server.getWorkflowWithId("df889c3a-8bee-4826-adf1-787f9bc166b2");
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto generated script, cannot be modified !
+var workflowToLaunch = Server.getWorkflowWithId(&quot;df889c3a-8bee-4826-adf1-787f9bc166b2&quot;);
 if (workflowToLaunch == null) {
-	throw "Workflow not found";
+	throw &quot;Workflow not found&quot;;
 }
 
 var workflowParameters = new Properties();
@@ -1702,17 +2042,17 @@ scheduledTask = workflowToLaunch.schedule(workflowParameters, workflowScheduleDa
 <tr><th class=''>Description</th><td class=''>Change current execution credential.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>change-credential</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 if (newCredential != null) {
   if (String(newCredential) !== String(Server.getCredential())) {
     workflow.changeCredential(newCredential) ;
   }
   else {
-    System.log("Change credential is same as current user!");
+    System.log(&quot;Change credential is same as current user!&quot;);
   }
 }
 else  {
-  throw "'newCredential' is NULL";
+  throw &quot;&#039;newCredential&#039; is NULL&quot;;
 }
 </code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
@@ -1727,7 +2067,7 @@ else  {
 <tr><th class=''>Display Name</th><td class=''>Decision activity</td></tr>
 <tr><th class=''>Type</th><td class=''>decision-activity</td></tr>
 <tr><th class=''>Description</th><td class=''>Decision activity based on a workflow or an action.</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>// Generated by the system, cannot be edited
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>// Generated by the system, cannot be edited
 return (results !== null);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>user</td><td><code>AD:User</code></td><td>AD User you want to add to a group</td><td>user</td></tr>
@@ -1770,11 +2110,11 @@ return (results !== null);</code></pre></td></tr>
 <tr><th class=''>Description</th><td class=''>Sleep a given number of seconds.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>sleep</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 if ( sleepTime !== null )  {
 	System.sleep(sleepTime * 1000);
 }else  {
-	throw "'sleepTime' is NULL"; 
+	throw &quot;&#039;sleepTime&#039; is NULL&quot;; 
 }</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>sleepTime</td><td><code>number</code></td><td>Time to sleep in seconds</td><td>sleepTime</td></tr>
@@ -1790,12 +2130,12 @@ if ( sleepTime !== null )  {
 <tr><th class=''>Description</th><td class=''>Wait until date.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>wait-until-date</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script 
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script 
 if (waitDate !== null) { 
 	System.waitUntil(waitDate,1000);
 }
 else  { 
-	throw "'waitDate' is NULL"; 
+	throw &quot;&#039;waitDate&#039; is NULL&quot;; 
 }
 </code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
@@ -1812,8 +2152,8 @@ else  {
 <tr><th class=''>Description</th><td class=''>Wait for custom event.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>wait-custom-event</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>// Auto-generated script
-var eventType = isExternalEvent ? 'external' : 'internal';
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>// Auto-generated script
+var eventType = isExternalEvent ? &#039;external&#039; : &#039;internal&#039;;
 var eventCustom = null;
 if (eventName != null) {
 	eventCustom = System.waitCustomEventUntil(eventType,eventName,endDate);
@@ -1839,11 +2179,11 @@ success = (eventCustom != null) ;</code></pre></td></tr>
 <tr><th class=''>Description</th><td class=''>Send a custom event.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>send-custom-event</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>// Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>// Auto-generated script
 if (eventName != null) {
 	System.sendCustomEvent(eventName);
 } else  {
-	throw "'eventName' is NULL";
+	throw &quot;&#039;eventName&#039; is NULL&quot;;
 }
 </code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
@@ -1866,11 +2206,11 @@ if (eventName != null) {
 <tr><th class=''>Display Name</th><td class=''>Switch</td></tr>
 <tr><th class=''>Type</th><td class=''>switch</td></tr>
 <tr><th class=''>Description</th><td class=''>Basic switch activity based on a workflow attribute or parameter.</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>// Generated by the system, cannot be edited
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>// Generated by the system, cannot be edited
 if (vraHost !== null) {
-  return "item33";
+  return &quot;item33&quot;;
 } else if (true) {
-  return "item32";
+  return &quot;item32&quot;;
 }
 </code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
@@ -1892,7 +2232,7 @@ if (vraHost !== null) {
 <tr><th class=''>Description</th><td class=''>Decrement a counter by one.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>decrease-counter</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 counter = counter - 1;</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>counter</td><td><code>number</code></td><td>Item to decrease</td><td>counter</td></tr>
@@ -1912,7 +2252,7 @@ counter = counter - 1;</code></pre></td></tr>
 <tr><th class=''>Description</th><td class=''>Post content via HTTP.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>http-post</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 var urlObject = new URL(url);
 result = urlObject.postContent(content);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
@@ -1942,7 +2282,7 @@ result = urlObject.postContent(content);</code></pre></td></tr>
 <tr><th class=''>Description</th><td class=''>Increment a counter by one.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>increase-counter</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 counter = counter + 1;</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>counter</td><td><code>number</code></td><td>Item to increase</td><td>counter</td></tr>
@@ -1962,7 +2302,7 @@ counter = counter + 1;</code></pre></td></tr>
 <tr><th class=''>Description</th><td class=''>Get content from HTTP.</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>http-get</td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 var urlObject = new URL(url);
 result = urlObject.getContent() ;</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
@@ -1982,7 +2322,7 @@ result = urlObject.getContent() ;</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the console log with the level "log".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>system-log</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 System.log(text);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -1997,7 +2337,7 @@ System.log(text);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the server log with the level "log".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>server-log</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 Server.log(text, object);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2013,8 +2353,8 @@ Server.log(text, object);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the console and the server log with the level "log".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>system-server-log</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
-System.log(text + "-" + object);
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
+System.log(text + &quot;-&quot; + object);
 Server.log(text, object);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2030,7 +2370,7 @@ Server.log(text, object);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the console log with the level "warn".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>system-warning</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 System.warn(text);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2045,7 +2385,7 @@ System.warn(text);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the server log with the level "warn".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>server-warning</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 Server.warn(text, object);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2061,8 +2401,8 @@ Server.warn(text, object);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the console and the server log with the level "warn".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>system-server-warning</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
-System.warn(text + "-" + object);
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
+System.warn(text + &quot;-&quot; + object);
 Server.warn(text, object);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2078,7 +2418,7 @@ Server.warn(text, object);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>'Log the input text to the console log with the level "error".'</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>system-error</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 System.error(text);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2093,7 +2433,7 @@ System.error(text);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the server log with the level "error".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>server-error</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
 Server.error(text, object);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2109,8 +2449,8 @@ Server.error(text, object);</code></pre></td></tr>
 <tr><th class=''>Type</th><td class=''>task</td></tr>
 <tr><th class=''>Description</th><td class=''>Log the input text to the console and the server log with the level "error".</td></tr>
 <tr><th class=''>Prototype ID</th><td class=''>system-server-error</td></tr>
-<tr><th class=''>Script</th><td class=''><pre><code class='language-javascript'>//Auto-generated script
-System.error(text + "-" + object);
+<tr><th class=''>Script</th><td class='script '><pre><code class='language-javascript'>//Auto-generated script
+System.error(text + &quot;-&quot; + object);
 Server.error(text, object);</code></pre></td></tr>
 <tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
 <tr><td>text</td><td><code>string</code></td><td>The text to log</td><td>errCode</td></tr>
@@ -2128,8 +2468,230 @@ Server.error(text, object);</code></pre></td></tr>
 <tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
 </table></li>
 
-        </ol>
-      </div>
+      </ol>
     </div>
-  </body>
+  </div>
+  <!-- Highlight.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    /**
+     * Adds line numbers to code blocks after highlight.js has processed them.
+     */
+    function addLineNumbers() {
+      document.querySelectorAll('pre > code').forEach(codeBlock => {
+        // Store the original classes of the codeBlock before it's replaced.
+        // This ensures that any styling or behavior tied to these classes
+        // remains active on the new container.
+        const originalClasses = codeBlock.className;
+
+        // highlight.js has already processed the codeBlock, so its innerHTML contains the highlighted spans.
+        const highlightedHtml = codeBlock.innerHTML;
+
+        // Create a new <code> element to act as the container for our line spans.
+        const codeContainer = document.createElement('code');
+
+        // Apply the original classes to the new codeContainer.
+        // We append 'code-container' to ensure our line numbering specific styles are also applied.
+        // The conditional check handles cases where originalClasses might be empty.
+        codeContainer.className = (originalClasses ? originalClasses + ' ' : '') + 'code-container';
+
+        // Split the highlighted HTML by newlines to get individual lines.
+        // This must handle potential HTML tags across line breaks carefully.
+        // However, highlight.js often preserves newlines within the <code> element,
+        // making this split reliable for visual lines.
+        const lines = highlightedHtml.split('\n');
+
+        // Iterate over each line and wrap it in a span with the 'line' class.
+        lines.forEach(lineContent => {
+          const lineSpan = document.createElement('span');
+          lineSpan.className = 'line';
+          // Use innerHTML to preserve highlight.js's generated spans (e.g., for syntax highlighting)
+          lineSpan.innerHTML = lineContent;
+          codeContainer.appendChild(lineSpan);
+        });
+
+        // Replace the original code block with the new container holding line spans.
+        // This effectively wraps the existing highlighted content with line numbers.
+        codeBlock.parentNode.replaceChild(codeContainer, codeBlock);
+      });
+    }
+
+    /**
+     * Initializes zoom and pan functionality for an SVG element.
+     * Also adds a reset button functionality.
+     * Handles print events to reset zoom for printing.
+     * @param {string} containerId The ID of the container div holding the SVG.
+     * @param {string} resetBtnId The ID of the reset button.
+     */
+    function initSvgZoomPan(containerId, resetBtnId) {
+      const container = document.getElementById(containerId);
+      console.log(`[initSvgZoomPan] Attempting to find container with ID: ${containerId}`, container);
+      if (!container) {
+        console.error(`[initSvgZoomPan] SVG container with ID '${containerId}' not found. Aborting initSvgZoomPan.`);
+        return;
+      }
+
+      const svg = container.querySelector('svg');
+      console.log(`[initSvgZoomPan] Found SVG element:`, svg);
+      if (!svg) {
+        console.error(`[initSvgZoomPan] SVG element not found within container ID '${containerId}'. Aborting initSvgZoomPan.`);
+        return;
+      }
+
+      const resetBtn = document.getElementById(resetBtnId);
+      console.log(`[initSvgZoomPan] Found Reset button:`, resetBtn);
+      if (!resetBtn) {
+        console.error(`[initSvgZoomPan] Reset button with ID '${resetBtnId}' not found. Aborting initSvgZoomPan.`);
+        return;
+      }
+
+      let initialViewBox;
+      const viewBoxAttr = svg.getAttribute('viewBox');
+      if (viewBoxAttr) {
+        initialViewBox = viewBoxAttr.split(' ').map(Number);
+        console.log(`[initSvgZoomPan] Initial viewBox from attribute:`, initialViewBox);
+      } else {
+        // Fallback: Use width and height attributes from the SVG tag if viewBox is not present
+        const svgWidth = parseFloat(svg.getAttribute('width')) || 278; // Default width from the SVG in the HTML
+        const svgHeight = parseFloat(svg.getAttribute('height')) || 336; // Default height from the SVG in the HTML
+        initialViewBox = [0, 0, svgWidth, svgHeight];
+        svg.setAttribute('viewBox', initialViewBox.join(' ')); // Ensure it has a viewBox
+        console.log(`[initSvgZoomPan] Initial viewBox from fallback (width/height attributes):`, initialViewBox);
+      }
+
+      let currentViewBox = [...initialViewBox]; // Use a copy for current interactive state
+      let savedViewBox = null; // To save state before print and restore after
+
+      let isPanning = false;
+      let startPoint = { x: 0, y: 0 };
+      // Create SVGPoint once
+      let svgPoint = svg.createSVGPoint();
+
+      /**
+       * Converts mouse coordinates to SVG coordinates.
+       * @param {number} clientX
+       * @param {number} clientY
+       * @returns {SVGPoint}
+       */
+      function getSvgCoordinates(clientX, clientY) {
+        svgPoint.x = clientX;
+        svgPoint.y = clientY;
+        // Important: getScreenCTM() can be null if SVG is not rendered or hidden
+        const ctm = svg.getScreenCTM();
+        if (!ctm) {
+          console.warn("[getSvgCoordinates] SVG's CTM is null. Cannot transform coordinates.");
+          return svgPoint; // Return original point if CTM is not available
+        }
+        return svgPoint.matrixTransform(ctm.inverse());
+      }
+
+      /**
+       * Updates the SVG viewBox attribute.
+       */
+      function updateViewBox() {
+        svg.setAttribute('viewBox', currentViewBox.join(' '));
+      }
+
+      // Mouse Down (Start Pan)
+      container.addEventListener('mousedown', (e) => {
+        isPanning = true;
+        container.classList.add('panning');
+        startPoint = getSvgCoordinates(e.clientX, e.clientY);
+        console.log(`[mousedown] Start pan at SVG: ${startPoint.x}, ${startPoint.y}`);
+        e.preventDefault(); // Prevent default browser drag behavior
+      });
+
+      // Mouse Move (Pan)
+      container.addEventListener('mousemove', (e) => {
+        if (!isPanning) return;
+        e.preventDefault(); // Prevent default browser drag behavior
+
+        const currentPoint = getSvgCoordinates(e.clientX, e.clientY);
+        currentViewBox[0] -= (currentPoint.x - startPoint.x);
+        currentViewBox[1] -= (currentPoint.y - startPoint.y);
+        updateViewBox();
+        // console.log(`[mousemove] Current viewBox: ${currentViewBox.join(' ')}`); // Log frequently for debugging
+      });
+
+      // Mouse Up (End Pan)
+      container.addEventListener('mouseup', () => {
+        isPanning = false;
+        container.classList.remove('panning');
+        console.log(`[mouseup] End pan. Final viewBox: ${currentViewBox.join(' ')}`);
+      });
+
+      // Mouse Leave (End Pan if mouse leaves container while dragging)
+      container.addEventListener('mouseleave', () => {
+        if (isPanning) {
+          isPanning = false;
+          container.classList.remove('panning');
+          console.log(`[mouseleave] Pan stopped. Final viewBox: ${currentViewBox.join(' ')}`);
+        }
+      });
+
+      // Wheel Event (Zoom)
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault(); // Prevent page scrolling
+
+        const zoomIntensity = 0.1; // How much to zoom per wheel tick
+        const mouseSvgPoint = getSvgCoordinates(e.clientX, e.clientY);
+
+        const scale = e.deltaY > 0 ? (1 + zoomIntensity) : (1 - zoomIntensity); // Zoom out or in
+
+        // Adjust width and height
+        currentViewBox[2] *= scale;
+        currentViewBox[3] *= scale;
+
+        // Adjust x and y to zoom towards the mouse cursor
+        currentViewBox[0] += (mouseSvgPoint.x - currentViewBox[0]) * (1 - scale);
+        currentViewBox[1] += (mouseSvgPoint.y - currentViewBox[1]) * (1 - scale);
+
+        updateViewBox();
+        console.log(`[wheel] Zoom. New viewBox: ${currentViewBox.join(' ')}`);
+      });
+
+      // Reset Button functionality
+      resetBtn.addEventListener('click', () => {
+        currentViewBox = [...initialViewBox];
+        updateViewBox();
+        console.log(`[resetBtn] View reset to initial: ${initialViewBox.join(' ')}`);
+      });
+
+      // Print event handling
+      window.addEventListener('beforeprint', () => {
+        console.log("[beforeprint] Saving current viewBox and resetting for print.");
+        // Save current interactive viewBox state
+        savedViewBox = [...currentViewBox];
+        // Reset to initial viewBox for printing
+        currentViewBox = [...initialViewBox];
+        updateViewBox();
+      });
+
+      window.addEventListener('afterprint', () => {
+        console.log("[afterprint] Restoring viewBox.");
+        // Restore interactive viewBox state after printing
+        if (savedViewBox) {
+          currentViewBox = [...savedViewBox];
+          updateViewBox();
+          savedViewBox = null; // Clear saved state
+        }
+      });
+    }
+
+    // Run the functions when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // First, let highlight.js highlight all code blocks
+      hljs.highlightAll();
+      // Then, add line numbers to the already highlighted code blocks
+      addLineNumbers();
+    });
+    // Initialize SVG zoom and pan after window has fully loaded, with a small delay for safety
+    window.onload = () => {
+      // A slight delay (even 0ms) ensures the browser has fully rendered the SVG element
+      // and its content, making getScreenCTM and other SVG methods reliable.
+      initSvgZoomPan('WorkflowGraph', 'resetDiagramBtn');
+    };
+  </script>
+</body>
+
 </html>
