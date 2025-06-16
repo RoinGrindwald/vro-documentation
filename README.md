@@ -3,7 +3,7 @@
 This repository provides a complete solution for automatically generating and enhancing documentation for your vRealize Orchestrator (vRO) workflows. It leverages custom icons for improved visual clarity and bundles all required components into a single vRO package for easy deployment.
 
 **Project Repository:** [vro-documentation](https://github.com/RoinGrindwald/vro-documentation)  
-**Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v1.1)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.1/com.broadcom.pso.vro.documentation.package)
+**Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v1.2)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2/com.broadcom.pso.vro.documentation.package)
 
 ---
 
@@ -42,13 +42,15 @@ All components are delivered in the `com.broadcom.pso.vro.documentation.package`
     Generates documentation for a single workflow and stores it as a vRO Resource Element.
   - **Generate Workflow Category Documentation:**  
     Generates documentation for all workflows within a selected category, storing each as a Resource Element.
+  - **Generate All Workflows Documentation:**  
+    Generates documentation for all workflows storing each as a Resource Element. You can exclude the inbuilt Library.
 
 ---
 
 ## How It Works
 
 1. **Select a Workflow or Category:**  
-   Run either the `Generate Workflow Documentation` (for a single workflow) or `Generate Workflow Category Documentation` (for all workflows in a category).
+   Run either the `Generate Workflow Documentation` (for a single workflow) or `Generate Workflow Category Documentation` (for all workflows in a category) or `Generate All Workflow Documentation` (for all workflows [Option to exclude `Library`]).
 2. **Extract Metadata:**  
    The workflow extracts structure and metadata, converting it into a Graphviz DOT string.
 3. **Render SVG Diagram:**  
@@ -83,6 +85,7 @@ See the [`documentation/`](documentation/) folder for real examples of the gener
 |-----------------------------------|------------------------------------------------|-----------------------------------|
 | Generate Workflow Documentation   | `workflow`, `type`, `useClarity`, `horizontal` | `workflowDocumentation`           |
 | Generate Workflow Category Documentation | `workflowCategory`, `type`, `useClarity`, `horizontal` | `result` (array of ResourceElements) |
+| Generate All Workflow Documentation | `excludeLibrary` `type`, `useClarity`, horizontal` | `result` (array of ResourceElements)
 
 ---
 
