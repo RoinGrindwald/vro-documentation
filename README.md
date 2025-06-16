@@ -1,20 +1,24 @@
-# Self-Documenting vRealize Orchestrator Workflows
+# vro-documentation
 
-This repository provides a complete solution for automatically generating and enhancing documentation for your vRealize Orchestrator (vRO) workflows. It leverages custom icons for improved visual clarity and bundles all required components into a single vRO package for easy deployment.
+This repository provides a compiled vRealize Orchestrator (vRO) package containing all workflows and actions from the [`source/`](source/) directory, along with automated documentation generation for each workflow. The solution is designed to make your vRO automation self-documenting, visually clear, and easy to maintain.
 
 **Project Repository:** [vro-documentation](https://github.com/RoinGrindwald/vro-documentation)  
 **Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v1.2)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2/com.broadcom.pso.vro.documentation.package)
 
 ---
 
-## Key Features
+## Features
 
 - **Automated Documentation Generation:**  
-  Generate detailed documentation for individual workflows or entire workflow categories, including diagrams, tables, and step-by-step breakdowns.
-- **Comprehensive Output:**  
-  Documentation includes workflow metadata, inputs, outputs, variables, usages, dependencies, and a visual SVG schema.
-- **Seamless vRO Integration:**  
-  All components are delivered as native vRO workflows and Node.js actions for direct import and execution.
+  Generates Markdown, HTML, and SVG documentation for individual workflows, workflow categories, or all workflows at once.
+- **Visual Workflow Diagrams:**  
+  Each workflow is documented with a visual SVG schema, using standard vRO workflow icons for clarity.
+- **Comprehensive Metadata:**  
+  Documentation includes workflow metadata, inputs, outputs, variables, usages, dependencies, and step-by-step breakdowns.
+- **Native vRO Integration:**  
+  All components are delivered as native vRO workflows and Node.js actions, ready for import and execution.
+- **Resource Element Storage:**  
+  Generated documentation is stored as vRO Resource Elements for easy retrieval and export.
 
 ---
 
@@ -50,14 +54,12 @@ All components are delivered in the `com.broadcom.pso.vro.documentation.package`
 ## How It Works
 
 1. **Select a Workflow or Category:**  
-   Run either the `Generate Workflow Documentation` (for a single workflow) or `Generate Workflow Category Documentation` (for all workflows in a category) or `Generate All Workflow Documentation` (for all workflows [Option to exclude `Library`]).
+   Run either the `Generate Workflow Documentation` (for a single workflow), `Generate Workflow Category Documentation` (for all workflows in a category), or `Generate All Workflow Documentation` (for all workflows, with an option to exclude the Library).
 2. **Extract Metadata:**  
    The workflow extracts structure and metadata, converting it into a Graphviz DOT string.
 3. **Render SVG Diagram:**  
-   The DOT string is rendered into an SVG diagram using Node.js actions.
-4. **Apply Icons:**  
-   The SVG is post-processed to replace default node shapes with custom icons from the Resource Element.
-5. **Store Documentation:**  
+   The DOT string is rendered into an SVG diagram using Node.js actions, with standard vRO workflow icons.
+4. **Store Documentation:**  
    The final documentation (Markdown/HTML and SVG) is saved as vRO Resource Elements for easy access and export.
 
 ---
@@ -70,7 +72,7 @@ All components are delivered in the `com.broadcom.pso.vro.documentation.package`
    - **Generate Workflow Documentation:**  
      Inputs: `workflow`, `type` (Markdown/HTML), `useClarity` (for Clarity CSS), `horizontal` (diagram orientation)
    - **Generate Workflow Category Documentation:**  
-     Inputs: `workflowCategory`, `type` (Markdown/HTML), `useClarity`(for Clarity CSS), `horizontal` (diagram orientation)
+     Inputs: `workflowCategory`, `type` (Markdown/HTML), `useClarity` (for Clarity CSS), `horizontal` (diagram orientation)
    - Outputs are stored as Resource Elements.
 3. **Export or Use Documentation:**  
    Retrieve the generated Resource Elements or export the Markdown/HTML/SVG files for use in wikis, documentation portals, or as PDFs.
@@ -85,21 +87,44 @@ See the [`documentation/`](documentation/) folder for real examples of the gener
 |-----------------------------------|------------------------------------------------|-----------------------------------|
 | Generate Workflow Documentation   | `workflow`, `type`, `useClarity`, `horizontal` | `workflowDocumentation`           |
 | Generate Workflow Category Documentation | `workflowCategory`, `type`, `useClarity`, `horizontal` | `result` (array of ResourceElements) |
-| Generate All Workflow Documentation | `excludeLibrary` `type`, `useClarity`, horizontal` | `result` (array of ResourceElements)
+| Generate All Workflow Documentation | `includeLibrary`, `type`, `useClarity`, `horizontal` | `result` (array of ResourceElements) |
 
 ---
 
 ## What Gets Generated
 
 - Markdown and HTML documentation files for each workflow
-- SVG diagrams
+- SVG diagrams for workflow schemas using vRO workflow icons
 - All documentation is stored as vRO Resource Elements
 
 ---
 
-## Acknowledgements
+## See It In Action
 
-Thanks to the following open-source projects:
+![Example SVG Diagram](documentation/Generate_Workflow_Category_Documentation.svg)
+
+*Above: Automatically generated SVG diagram using vRO workflow icons.*
+
+---
+
+## Quick Start
+
+1. **Download & Import:**  
+   [Download the package](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2/com.broadcom.pso.vro.documentation.package) and import into vRO.
+2. **Run a Workflow:**  
+   Launch `Generate Workflow Documentation` or `Generate Workflow Category Documentation` from the vRO client.
+3. **View Results:**  
+   Find your generated documentation in the vRO Resource Elements or export as Markdown/HTML/SVG.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for details.
+
+---
+
+## Acknowledgements
 
 - **Graphviz:** Diagram rendering
 - **node-graphviz:** Node.js Graphviz integration
