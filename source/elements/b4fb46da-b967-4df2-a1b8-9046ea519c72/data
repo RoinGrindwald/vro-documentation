@@ -1,0 +1,16 @@
+{
+  "name" : "documentation",
+  "version" : "0.0.0",
+  "description" : "This is used to convert GraphViz into a rendered svg",
+  "environmentVariables" : { },
+  "dependencies" : {
+    "node-graphviz" : "latest",
+    "xmldom" : "latest"
+  },
+  "repositories" : { },
+  "bundleHash" : "7dd375565cb571f7f287e8fd51cb545e3242b73b3e482f45513e476f00238093",
+  "id" : "b4fb46da-b967-4df2-a1b8-9046ea519c72",
+  "runtime" : "node:20",
+  "memoryLimit" : 0,
+  "timeout" : 180
+}

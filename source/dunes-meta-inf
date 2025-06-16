@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>UTF-16</comment>
+<entry key="pkg-name">com.broadcom.pso.vro.documentation</entry>
+<entry key="vso-version">8.18.1.24266232</entry>
+<entry key="pkg-description">This package contains all the workflows, actions and resources needed to automatically document workflows </entry>
+<entry key="vso-build-nb">24266232</entry>
+<entry key="pkg-signer">O=VMware,OU=Unknown,CN=Orchestrator vco-app-5b8cf7fdff-5vh44 bebbfd9c-f806-47f4-a82e-ad</entry>
+<entry key="pkg-owner">O=VMware,OU=Unknown,CN=Orchestrator vco-app-5b8cf7fdff-5vh44 bebbfd9c-f806-47f4-a82e-ad</entry>
+<entry key="used-plugins"></entry>
+<entry key="pkg-id">8a7484ad96d72cb60196ea5bfbe70139</entry>
+</properties>
