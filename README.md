@@ -3,7 +3,7 @@
 This repository provides a compiled Aria Automation Orchestrator (formerly vRealize Orchestrator, vRO) package containing all workflows and actions from the [`source/`](source/) directory, along with automated documentation generation for each workflow. The solution is designed to make your automation self-documenting, visually clear, and easy to maintain.
 
 **Project Repository:** [vro-documentation](https://github.com/RoinGrindwald/vro-documentation)  
-**Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v1.2)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2/com.broadcom.pso.vro.documentation.package)
+**Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v1.2.1)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2.1/com.broadcom.pso.vro.documentation.package)
 
 ---
 
@@ -122,7 +122,7 @@ Use these files to see exactly how the documentation and diagrams will look for 
 ## Quick Start
 
 1. **Download & Import:**  
-   [Download the package](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2/com.broadcom.pso.vro.documentation.package) and import into Aria Automation Orchestrator.
+   [Download the package](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2.1/com.broadcom.pso.vro.documentation.package) and import into Aria Automation Orchestrator.
 2. **Run a Workflow:**  
    Launch `Generate Workflow Documentation` or `Generate Workflow Category Documentation` from the Orchestrator client.
 3. **View Results:**  
