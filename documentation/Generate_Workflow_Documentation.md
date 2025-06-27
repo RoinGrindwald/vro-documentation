@@ -7,9 +7,9 @@
   <tr><th>Description</th><td>This is used to generate documentation for a workflow to Resources.</td></tr>
   <tr><th>Path</th><td>Library - Custom/Orchestrator/Workflows</td></tr>
   <tr><th>Category</th><td>Workflows</td></tr>
-  <tr><th>Version</th><td><code>0.1.0</code></td></tr>
+  <tr><th>Version</th><td><code>0.2.0</code></td></tr>
   <tr><th>Author</th><td>System Generated</td></tr>
-  <tr><th>Date</th><td>Fri Jun 13 2025 05:06:44 GMT-0000 (GMT)</td></tr>
+  <tr><th>Date</th><td>Fri Jun 27 2025 03:43:31 GMT-0000 (GMT)</td></tr>
 </table>
 
 ## Diagram
@@ -18,20 +18,20 @@
 
 ## Inputs
 
-| Name | Type | Description |
-|:-----|:-----|:-------------|
-| workflow | `Workflow` | Workflow |
-| type | `string` | - |
-| useClarity | `boolean` | If you want to use Clarity UI (HTML Only) |
-| horizontal | `boolean` | If you want the schema image to be horizontal |
-
+<table>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Value</th></tr>
+<tr><td>workflow</td><td>Workflow</td><td>Workflow</td><td>-</td></tr>
+<tr><td>type</td><td>string</td><td>-</td><td>-</td></tr>
+<tr><td>horizontal</td><td>boolean</td><td>If you want the schema image to be horizontal</td><td>-</td></tr>
+<tr><td>asTable</td><td>boolean</td><td>-</td><td>-</td></tr>
+</table>
 
 ## Outputs
 
-| Name | Type | Description |
-|:-----|:-----|:-------------|
-| workflowDocumenation | `ResourceElement` | - |
-
+<table>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Value</th></tr>
+<tr><td>workflowDocumenation</td><td>ResourceElement</td><td>-</td><td>-</td></tr>
+</table>
 
 ## Attributes (Variables)
 
@@ -46,6 +46,7 @@
 |:-----|:-----|:---------|
 | com.broadcom.pso.vro.documentation - 8a7484ad96d72cb60196ea5bfbe70139 | `Package` | PACKAGE |
 | Generate Workflow Category Documentation - 381b57fc-f8ef-4ce5-8a1a-d044c364172c | `Workflow` | SCHEMA - item3 |
+| Generate All Workflow Documentation - b1fbd847-f670-4cd1-a757-074e42f3cfe2 | `Workflow` | SCHEMA - item4 |
 
 
 ## Dependencies
@@ -57,92 +58,117 @@
 
 ## Workflow Steps
 
-<h3><a name='item1'>Step 1 - Generate Workflow Documentation To Resources (Main path)</a></h3>
-<table class='table'>
-<tr><th class=''>Name</th><td class=''>item1</td></tr>
-<tr><th class=''>Display Name</th><td class=''>Generate Workflow Documentation To Resources</td></tr>
-<tr><th class=''>Type</th><td class=''>task</td></tr>
-<tr><th class=''>Description</th><td class=''>Add a note to the workflow schema.</td></tr>
-<tr><th class=''>Script Module</th><td class=''>com.broadcom.pso.vro.rest.documentation/generateWorkflowDocumentationToResources</td></tr>
-<tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
-<tr><th class=''>Script</th><td class='script '>
+<h3><a name='item1'>Generate Workflow Documentation To Resources [Main path]</a></h3>
+<table>
+<tr><th>Name</th><td>item1</td></tr>
+<tr><th>Display Name</th><td>Generate Workflow Documentation To Resources</td></tr>
+<tr><th>Type</th><td>task</td></tr>
+<tr><th>Description</th><td>Add a note to the workflow schema.</td></tr>
+<tr><th>Script Module</th><td>com.broadcom.pso.vro.rest.documentation/generateWorkflowDocumentationToResources</td></tr>
+<tr><th>Error Bind</th><td>errCode</td></tr>
+<tr><th>Input Bindings</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr><tr><td>workflow</td><td><code>Workflow</code></td><td>Workflow</td><td>workflow</td></tr>
+<tr><td>type</td><td><code>string</code></td><td>HTML or Markdown</td><td>type</td></tr>
+<tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the schema image to be horizontal</td><td>horizontal</td></tr>
+<tr><td>asTable</td><td><code>boolean</code></td><td>Render as a table (true) or sectioned layout (false)</td><td>asTable</td></tr></table></td></tr>
+<tr><th>Output Bindings</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr><tr><td>actionResult</td><td><code>ResourceElement</code></td><td></td><td>workflowDocumenation</td></tr></table></td></tr>
+<tr><th>Script</th><td class='script'>
 
 ```javascript
 //Auto generated script, cannot be modified !
-actionResult = System.getModule("com.broadcom.pso.vro.rest.documentation").generateWorkflowDocumentationToResources(workflow,useClarity,type,horizontal);
+actionResult = System.getModule("com.broadcom.pso.vro.rest.documentation").generateWorkflowDocumentationToResources(workflow,type,horizontal,asTable);
 
 ```
 
 </td></tr>
-<tr><th class=''>Input Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
-<tr><td>workflow</td><td><code>Workflow</code></td><td>Workflow</td><td>workflow</td></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td></td><td>useClarity</td></tr>
-<tr><td>type</td><td><code>string</code></td><td>HTML or Markdown</td><td>type</td></tr>
-<tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the schema image to be horizontal</td><td>horizontal</td></tr>
-</table>
-</td></tr>
-<tr><th class=''>Output Bindings</th><td class=''><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>
-<tr><td>actionResult</td><td><code>ResourceElement</code></td><td></td><td>workflowDocumenation</td></tr>
-</table>
-</td></tr>
-<tr><th class=''>Used Actions</th><td class=''><table class='table'>
-<tr><th>Name</th><td>generateWorkflowDocumentationToResources</td></tr>
+<tr><th>Used Actions</th><td><table><tr><th>Name</th><td>generateWorkflowDocumentationToResources</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation</td></tr>
 <tr><th>ID</th><td>dd68a9d5-3c52-4593-b1e9-01dce27727ce</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflow</td><td><code>Workflow</code></td><td>Workflow</td></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>This is used to Generate the documentation to a resource element</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflow</td><td><code>Workflow</code></td><td>Workflow</td></tr>
 <tr><td>type</td><td><code>string</code></td><td>HTML or Markdown</td></tr>
 <tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the schema image to be horizontal</td></tr>
-</table></td></tr>
+<tr><td>asTable</td><td><code>boolean</code></td><td>Render as a table (true) or sectioned layout (false)</td></tr></table></td></tr>
 <tr><th>Output</th><td>ResourceElement</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
 // Generate the documenation
-var documentation = System.getModule("com.broadcom.pso.vro.rest.documentation").generateWorkflowDocumentation(workflow.id, type, useClarity, null, horizontal);
+var documentation = System.getModule("com.broadcom.pso.vro.rest.documentation").generateWorkflowDocumentation(
+    workflow.id,
+    type,
+    null,
+    horizontal,
+    asTable
+);
+
+// Use Workflow Version for Documentation Version
+var version = workflow.version;
 
 // Setup the file name
-var fileName = workflow.name.replace(/ /g, '_') + '.' + (type.toLocaleLowerCase() == 'markdown' ? 'md' : 'html')
-var svgName = workflow.name.replace(/ /g, '_') + '.svg'
+var fileName = workflow.name.replace(/ /g, '_') + '.' + (type.toLocaleLowerCase() == 'markdown' ? 'md' : 'html');
+var svgName = workflow.name.replace(/ /g, '_') + '.svg';
 
 // Create the resource
-var resourceElement = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Workflow/' + workflow.workflowCategory.path, fileName);
+var resourceElement = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement(
+    'Documentation/Workflow/' + workflow.workflowCategory.path,
+    fileName
+);
 
 // Update type and version to be tracked in git
-System.getModule("com.broadcom.pso.vro.resource").updateResourceElementByMimeAttachement(resourceElement, documentation, 'text/html')
-System.getModule("com.broadcom.pso.vro.rest.resource").updateResourceForGitTracking(resourceElement)
+System.getModule("com.broadcom.pso.vro.resource").updateResourceElementByMimeAttachement(
+    resourceElement,
+    documentation,
+    'text/html'
+);
+System.getModule("com.broadcom.pso.vro.rest.resource").updateResource(
+    System.getObjectId(resourceElement),
+    resourceElement.name,
+    resourceElement.description,
+    System.getObjectId(resourceElement.getResourceElementCategory()),
+    version
+);
 
 // Generate the Schema image and save as a resource
 if (type == 'markdown') {
-    var svgFile = System.getModule("com.broadcom.pso.vro.rest.workflow").generateWorkflowSchema(workflow.id, false, horizontal);
+    var svgFile = System.getModule("com.broadcom.pso.vro.rest.workflow").generateWorkflowSchema(
+        workflow.id,
+        horizontal
+    );
 
-    var svgResourceElement = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Workflow/' + workflow.workflowCategory.path, svgName);
-    System.getModule("com.broadcom.pso.vro.resource").updateResourceElementByMimeAttachement(svgResourceElement, svgFile, 'image/svg+xml')
-    System.getModule("com.broadcom.pso.vro.rest.resource").updateResourceForGitTracking(svgResourceElement)
+    var svgResourceElement = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement(
+        'Documentation/Workflow/' + workflow.workflowCategory.path,
+        svgName
+    );
+    System.getModule("com.broadcom.pso.vro.resource").updateResourceElementByMimeAttachement(
+        svgResourceElement,
+        svgFile,
+        'image/svg+xml'
+    );
+    System.getModule("com.broadcom.pso.vro.rest.resource").updateResource(
+        System.getObjectId(svgResourceElement),
+        svgResourceElement.name,
+        svgResourceElement.description,
+        System.getObjectId(svgResourceElement.getResourceElementCategory()),
+        version
+    );
 }
 
 return resourceElement
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>generateWorkflowDocumentation</td></tr>
+</table><br><table><tr><th>Name</th><td>generateWorkflowDocumentation</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation</td></tr>
 <tr><th>ID</th><td>01b36113-3fe1-4ce6-9d51-a06dd0e852d4</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
 <tr><td>type</td><td><code>string</code></td><td>Output type: "html" or "markdown"</td></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td>Whether to include Clarity UI (used only if type is "html")</td></tr>
 <tr><td>author</td><td><code>string</code></td><td>(Optional) Author</td></tr>
 <tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the schema image to be horizontal</td></tr>
-</table></td></tr>
+<tr><td>asTable</td><td><code>boolean</code></td><td>Render as a table (true) or sectioned layout (false)</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -160,7 +186,6 @@ workflowObject = System.getModule("com.broadcom.pso.vro.rest.documentation.util"
 var renderedSteps = [];
 var workflowLinks = [];
 var visited = {};
-var stepCounter = 1;
 
 walk(workflowObject['root-name'], "Main", type);
 
@@ -176,18 +201,17 @@ var renderCtx = {
     dependencies: System.getModule("com.broadcom.pso.vro.rest.workflow").getWorkflowDependencies(workflowId),
     author: author,
     type: type,
-    useClarity: useClarity,
     steps: renderedSteps.join('\n'),
     navLinks: workflowLinks.join('\n'),
     diagram: ((type === 'markdown')
         ? ""
-        : System.getModule("com.broadcom.pso.vro.rest.workflow").generateWorkflowSchema(workflowId, false, horizontal)
+        : System.getModule("com.broadcom.pso.vro.rest.workflow").generateWorkflowSchema(workflowId, horizontal)
     )
 };
 
 var html = (type === "markdown")
     ? System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderMarkdownDoc(renderCtx)
-    : System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderHtmlDoc(useClarity, renderCtx);
+    : System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderHtmlDoc(renderCtx);
 
 System.log("Generated documentation for workflow: " + workflow.name);
 return html;
@@ -201,7 +225,7 @@ function walk(itemName, pathLabel, formatType) {
     var item = findItemByName(itemName, workflowObject);
     if (!item) return;
 
-    var html = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderWorkflowStep(item, pathLabel, stepCounter++, useClarity, formatType);
+    var html = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderWorkflowStep(item, pathLabel, formatType, asTable);
     renderedSteps.push(html.section);
     workflowLinks.push(html.link);
 
@@ -231,18 +255,14 @@ function findItemByName(name, apiData) {
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getWorkflowContent</td></tr>
+</table><br><table><tr><th>Name</th><td>getWorkflowContent</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.workflow</td></tr>
 <tr><th>ID</th><td>11f43dd2-ee16-462c-80ce-df01e1ff7251</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Additional Parameters</td></tr>
-<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr>
-</table></td></tr>
+<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -261,17 +281,13 @@ return System.getModule("com.broadcom.pso.vro.rest.methods").get(url);
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>get</td></tr>
+</table><br><table><tr><th>Name</th><td>get</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.methods</td></tr>
 <tr><th>ID</th><td>da340f7f-7476-4199-a61d-39118da3df9b</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
-<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
+<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -288,19 +304,15 @@ return System.getModule("com.broadcom.pso.vro.rest.methods").restOperation(metho
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>restOperation</td></tr>
+</table><br><table><tr><th>Name</th><td>restOperation</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.methods</td></tr>
 <tr><th>ID</th><td>fe2b6be2-7f09-4877-b915-cee0c5c714c4</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>method</td><td><code>string</code></td><td>Method</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>method</td><td><code>string</code></td><td>Method</td></tr>
 <tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
 <tr><td>content</td><td><code>string</code></td><td>Content</td></tr>
-<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr>
-</table></td></tr>
+<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -308,7 +320,7 @@ return System.getModule("com.broadcom.pso.vro.rest.methods").restOperation(metho
 ```javascript
 try {
     // Get vRO URL and token
-    var connectionDetails = System.getModule("com.broadcom.pso.vro.rest.methods").getLocalConnectionDetails();
+    var connectionDetails = System.getModule("com.broadcom.pso.vro.rest.methods").getConnection();
     var vroUrl = connectionDetails.get("vcoUrl");
     var token = connectionDetails.get("token");
 
@@ -340,7 +352,7 @@ try {
     // Execute request
     var result = request.execute();
 
-    System.log(
+    System.debug(
         "\nURL: " + transientHost.url + url +
         "\nMethod: " + method +
         "\nStatus: " + result.statusCode +
@@ -387,15 +399,233 @@ try {
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getLocalConnectionDetails</td></tr>
+</table><br><table><tr><th>Name</th><td>getConnection</td></tr>
+<tr><th>Module</th><td>com.broadcom.pso.vro.rest.methods</td></tr>
+<tr><th>ID</th><td>ec721a53-6b8d-4a78-8459-b185c29b1a10</td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>No description</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr></table></td></tr>
+<tr><th>Output</th><td>Properties</td></tr>
+<tr><th>Runtime Environment</th><td>Javascript</td></tr>
+<tr><th>Script</th><td class='script'>
+
+```javascript
+// Initiate CacheManager
+var DynamicTypesCacheManager = new (System.getModule("com.broadcom.pso.vro.dynamicTypesCacheManager").DynamicTypesCacheManager());
+
+// Get User
+var user = Server.getRunningUser();
+
+// See if the connection is cached
+var connectionDetails = DynamicTypesCacheManager.get(user);
+
+// If no cache, get connection details
+if (!connectionDetails) {
+    var connectionDetails = System.getModule("com.broadcom.pso.vro.rest.methods").getLocalConnectionDetails();
+
+    // Cache for 30 minutes
+    DynamicTypesCacheManager.put(user, connectionDetails, .5);
+}
+
+return connectionDetails
+```
+
+</td></tr>
+</table><br><table><tr><th>Name</th><td>DynamicTypesCacheManager</td></tr>
+<tr><th>Module</th><td>com.broadcom.pso.vro.dynamicTypesCacheManager</td></tr>
+<tr><th>ID</th><td>c2afab18-ae2a-4246-9710-97c64c935fee</td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>Constructor function for a cache manager utilizing DynamicTypesManager with expiration.</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr></table></td></tr>
+<tr><th>Output</th><td>Any</td></tr>
+<tr><th>Runtime Environment</th><td>Javascript</td></tr>
+<tr><th>Script</th><td class='script'>
+
+```javascript
+/**
+ * @function DynamicTypesCacheManager
+ * @description Constructor function for a cache manager utilizing DynamicTypesManager with expiration.
+ * @return {DynamicTypesCacheManager} An instance of DynamicTypesCacheManager.
+ */
+function DynamicTypesCacheManager() {
+    // No instance-specific properties needed for this implementation,
+    // as it primarily wraps static calls to DynamicTypesManager.
+    // However, this structure allows for future instance-specific state if required.
+}
+
+/**
+ * Puts an item into the cache with a calculated expiration time.
+ * @param {string} key The key under which to store the value.
+ * @param {Object} value The object to be cached.
+ * @param {number} hours The number of hours until the cached item expires. Must be non-negative.
+ * @returns {boolean} True if the item was successfully put in cache, false otherwise.
+ */
+DynamicTypesCacheManager.prototype.put = function(key, value, hours) {
+    if (!key || typeof key !== 'string') {
+        System.error("Cache key must be a non-empty string.");
+        return false;
+    }
+    if (typeof hours !== 'number' || hours < 0) { 
+        System.error("Hours must be a non-negative number.");
+        return false;
+    }
+
+    try {
+        var now = new Date();
+        var expiryTimeMs = now.getTime() + (hours * 60 * 60 * 1000); 
+
+        var cachedItem = {
+            value: value,
+            expiry: expiryTimeMs,
+            putTime: now.getTime() // Optional: timestamp when item was put in cache
+        };
+
+        DynamicTypesManager.putInCache(key, cachedItem);
+        System.log("Successfully put item with key '" + key + "' into cache for " + hours + " hours. Expires: " + new Date(expiryTimeMs).toISOString());
+        return true;
+    } catch (e) {
+        System.error("Error putting item in cache for key '" + key + "': " + e);
+        return false;
+    }
+};
+
+/**
+ * Retrieves an item from the cache. Checks for expiration and removes the item if expired.
+ * @param {string} key The key of the item to retrieve.
+ * @returns {Object | null} The cached object if found and not expired, otherwise null.
+ */
+DynamicTypesCacheManager.prototype.get = function(key) {
+    if (!key || typeof key !== 'string') {
+        System.error("Cache key must be a non-empty string.");
+        return null;
+    }
+
+    try {
+        var cachedItem = DynamicTypesManager.getFromCache(key);
+
+        if (cachedItem === null || typeof cachedItem === 'undefined') {
+            System.log("Item with key '" + key + "' not found in cache.");
+            return null;
+        }
+
+        if (typeof cachedItem.expiry !== 'number' || typeof cachedItem.value === 'undefined') {
+            System.warn("Cached item for key '" + key + "' has an unexpected structure or is a raw value. Returning it as is and not applying expiration logic.");
+            return (typeof cachedItem.value !== 'undefined') ? cachedItem.value : cachedItem;
+        }
+
+        var now = new Date().getTime(); 
+        var isExpired = now > cachedItem.expiry;
+
+        if (isExpired) {
+            System.log("Item with key '" + key + "' found but is expired. Removing from cache.");
+            DynamicTypesManager.removeFromCache(key);
+            return null;
+        } else {
+            System.log("Item with key '" + key + "' found and is valid. Expires in: " + ((cachedItem.expiry - now) / 1000 / 60).toFixed(2) + " minutes.");
+            return cachedItem.value;
+        }
+    } catch (e) {
+        System.error("Error getting item from cache for key '" + key + "': " + e);
+        return null;
+    }
+};
+
+/**
+ * Removes an item from the cache, regardless of its expiration status.
+ * @param {string} key The key of the item to remove.
+ * @returns {boolean} True if the item was successfully removed, false otherwise.
+ */
+DynamicTypesCacheManager.prototype.remove = function(key) {
+    if (!key || typeof key !== 'string') {
+        System.error("Cache key must be a non-empty string.");
+        return false;
+    }
+    try {
+        var success = DynamicTypesManager.removeFromCache(key);
+        if (success) {
+            System.log("Successfully removed item with key '" + key + "' from cache.");
+        } else {
+            System.log("Item with key '" + key + "' was not found in cache to remove.");
+        }
+        return success;
+    } catch (e) {
+        System.error("Error removing item from cache for key '" + key + "': " + e);
+        return false;
+    }
+};
+
+/**
+ * Retrieves all valid (non-expired) items from the cache as an array of {key: string, value: Object} pairs.
+ * Expired items will be removed during this process.
+ * @returns {Array<Object>} An array where each object has 'key' and 'value' properties for valid cached items.
+ */
+DynamicTypesCacheManager.prototype.getAll = function() {
+    var allKeys = DynamicTypesManager.getCacheKeys(); 
+    var validItemsArray = []; 
+
+    if (!allKeys || allKeys.length === 0) {
+        System.log("Cache is empty. No items to retrieve.");
+        return validItemsArray;
+    }
+
+    System.log("Attempting to retrieve all items from cache. Total keys found: " + allKeys.length);
+
+    for (var i = 0; i < allKeys.length; i++) {
+        var key = allKeys[i];
+        try {
+            // Use the instance's get method to handle expiration check and removal
+            var itemValue = this.get(key); 
+            if (itemValue !== null) {
+                validItemsArray.push({ key: key, value: itemValue }); 
+                System.log("Key '" + key + "' is valid and added to results.");
+            } else {
+                System.log("Key '" + key + "' was either not found or expired and removed.");
+            }
+        } catch (e) {
+            System.error("Error processing key '" + key + "' in getAll: " + e);
+        }
+    }
+    System.log("Finished retrieving all valid items. Count: " + validItemsArray.length);
+    return validItemsArray;
+};
+
+/**
+ * Clears all items from the DynamicTypesManager cache.
+ * @returns {boolean} True if the cache was successfully cleared, false otherwise.
+ */
+DynamicTypesCacheManager.prototype.clearCache = function() {
+    var allKeys = DynamicTypesManager.getCacheKeys();
+    if (!allKeys || allKeys.length === 0) {
+        System.log("Cache is already empty. Nothing to clear.");
+        return true;
+    }
+
+    System.log("Attempting to clear cache. Found " + allKeys.length + " items to remove.");
+    try {
+        for (var i = 0; i < allKeys.length; i++) {
+            var key = allKeys[i];
+            this.remove(key);
+            System.log("Removed key: '" + key + "'");
+        }
+        System.log("Cache cleared successfully.");
+        return true;
+    } catch (e) {
+        System.error("Error clearing cache: " + e);
+        return false;
+    }
+};
+
+// Return the constructor function itself
+return DynamicTypesCacheManager;
+```
+
+</td></tr>
+</table><br><table><tr><th>Name</th><td>getLocalConnectionDetails</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.methods</td></tr>
 <tr><th>ID</th><td>68d878f0-2e32-4b25-9934-3a8b960a0e29</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>python:3.10</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -409,17 +639,13 @@ def handler(context, inputs):
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>enrichWorkflowItems</td></tr>
+</table><br><table><tr><th>Name</th><td>enrichWorkflowItems</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation.util</td></tr>
 <tr><th>ID</th><td>e4f7623c-7048-443f-8826-fd8a4c805cea</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>apiData</td><td><code>Properties</code></td><td>API Data</td></tr>
-<tr><td>workflowItems</td><td><code>Array/Any</code></td><td>Workflow Items</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>apiData</td><td><code>Properties</code></td><td>API Data</td></tr>
+<tr><td>workflowItems</td><td><code>Array/Any</code></td><td>Workflow Items</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -518,18 +744,14 @@ function allOutItemsMatch(apiConditions, workflowOutItems) {
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getWorkflowUsages</td></tr>
+</table><br><table><tr><th>Name</th><td>getWorkflowUsages</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.workflow</td></tr>
 <tr><th>ID</th><td>a0055e02-9260-4e84-999e-ca00377c68d6</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Additional Parameters</td></tr>
-<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr>
-</table></td></tr>
+<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr></table></td></tr>
 <tr><th>Output</th><td>Array/Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -551,16 +773,12 @@ return System.getModule("com.broadcom.pso.vro.util").convertNestedReferences(res
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>convertNestedReferences</td></tr>
+</table><br><table><tr><th>Name</th><td>convertNestedReferences</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.util</td></tr>
 <tr><th>ID</th><td>6ea2bfae-304a-4fb2-90fa-399fd7829432</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>referenceObject</td><td><code>Properties</code></td><td>API Reference Object</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>referenceObject</td><td><code>Properties</code></td><td>API Reference Object</td></tr></table></td></tr>
 <tr><th>Output</th><td>Array/Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -590,18 +808,14 @@ return result;
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getWorkflowDependencies</td></tr>
+</table><br><table><tr><th>Name</th><td>getWorkflowDependencies</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.workflow</td></tr>
 <tr><th>ID</th><td>022d7341-fea8-40da-bb59-f900d920fa49</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Additional Parameters</td></tr>
-<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr>
-</table></td></tr>
+<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr></table></td></tr>
 <tr><th>Output</th><td>Array/Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -623,18 +837,13 @@ return System.getModule("com.broadcom.pso.vro.util").convertNestedReferences(res
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>generateWorkflowSchema</td></tr>
+</table><br><table><tr><th>Name</th><td>generateWorkflowSchema</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.workflow</td></tr>
 <tr><th>ID</th><td>2b3cf51c-4e50-4433-9ed3-483da8f091af</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
-<tr><td>removeHeightAndWidth</td><td><code>boolean</code></td><td>If you want to remove the height and width from the SVG</td></tr>
-<tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the image to be horizontal</td></tr>
-</table></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>This is used to generate the Schema SVG Diagram for a workflow</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
+<tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the image to be horizontal</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -643,190 +852,131 @@ return System.getModule("com.broadcom.pso.vro.util").convertNestedReferences(res
 // Get Workflow in GraphViz
 var dotGraph = System.getModule("com.broadcom.pso.vro.rest.workflow").generateDotGraphFromWorkflow(workflowId, horizontal);
 
-// Render dotGraph to SVG
-var svg = System.getModule("com.broadcom.pso.graphviz").renderGraphvizDot(dotGraph);
-
 // Get Icon Json
 var icons = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'icon.json').getContentAsMimeAttachment().content;
 
-// Update SVG with Icons
-svg = System.getModule("com.broadcom.pso.graphviz").postProcessGraphSvgWithIcons(svg, icons);
-
-//Return
-if (removeHeightAndWidth) {
-    return adjustSvgDimensions(svg)
-} else {
-    return svg
-}
-
-function adjustSvgDimensions(svgText) {
-    // Use a regex to replace width and height in the opening <svg ... > tag
-    return svgText.replace(/<svg[^>]*width="[^"]*"[^>]*height="[^"]*"/,
-        function (match) {
-            return match
-                .replace(/width="[^"]*"/, '')
-                .replace(/height="[^"]*"/, '');
-        });
-}
-
+// Render Dot graph to SVG with Icons
+var svg = System.getModule("com.broadcom.pso.graphviz").renderGraphvizDot(dotGraph);
+return System.getModule("com.broadcom.pso.graphviz").postProcessGraphSvgWithIcons(svg, icons);
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>generateDotGraphFromWorkflow</td></tr>
+</table><br><table><tr><th>Name</th><td>generateDotGraphFromWorkflow</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.workflow</td></tr>
 <tr><th>ID</th><td>7f201ef7-3753-413d-b146-fede586bf369</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
-<tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the graph to be horizontal</td></tr>
-</table></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>Generates a Graphviz DOT string representing the workflow structure, with styling from a resource element.</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>workflowId</td><td><code>string</code></td><td>Workflow ID</td></tr>
+<tr><td>horizontal</td><td><code>boolean</code></td><td>If you want the graph to be horizontal</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
+// --- Configuration & Initialization ---
 var workflowContent = System.getModule("com.broadcom.pso.vro.rest.workflow").getWorkflowContent(workflowId);
-var styleMap = JSON.parse(System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'workflow-style.json').getContentAsMimeAttachment().content);
-var items = workflowContent["workflow-item"];
-var output = [];
-var edges = [];
 
-output.push('digraph WorkflowGraph {');
-output.push('    graph [bgcolor="none", fontname="Calibri", compound="true", nodesep=1, fontcolor="#6a7a81"]; ' + (horizontal ? 'rankdir="LR";' : ''));
-output.push('    node [fontname="Calibri", penwidth="2", color="#6a7a81"];');
-output.push('    edge [fontname="Calibri", color="#0079ad", penwidth=1.6, arrowsize=.8, headclip="false", minlen=2, fontcolor="#6a7a81"];');
+if (!workflowContent) {
+    throw new Error("Workflow content not found for ID: " + workflowId);
+}
 
-// Add Start
-// Ensure the 'start' item object always has a 'type' property
-addSubgraphItem(
-    'workflow_start',
-    'start',
-    workflowContent["root-name"],
-    { type: 'start', position: workflowContent.position }, // 'type' is explicitly set here
-    output,
-    edges,
+var styleMap;
+try {
+    var styleResource = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'workflow-style.json');
+    if (!styleResource || !styleResource.getContentAsMimeAttachment()) {
+        throw new Error("workflow-style.json resource element not found or is empty.");
+    }
+    styleMap = JSON.parse(styleResource.getContentAsMimeAttachment().content);
+} catch (e) {
+    System.error("Failed to load or parse workflow-style.json: " + e.message);
+    throw new Error("Failed to load workflow styling: " + e.message);
+}
+
+var dotGraphLines = [];
+var dotEdges = []; // Collect edges separately to append at the end
+
+// --- Graph Header - General Graph, Node, and Edge Defaults ---
+dotGraphLines.push('digraph WorkflowGraph {');
+dotGraphLines.push('    graph [bgcolor="none", fontname="Calibri", compound="true", nodesep=1, fontcolor="#6a7a81"]; ' + (horizontal ? 'rankdir="LR";' : ''));
+dotGraphLines.push('    node [fontname="Calibri", penwidth="2", color="#6a7a81"];');
+dotGraphLines.push('    edge [fontname="Calibri", color="#0079ad", penwidth=1.6, arrowsize=.8, headclip="false", minlen=2, fontcolor="#6a7a81"];');
+
+// --- Process Start Node ---
+// The original `addSubgraphItem` adds the node, its subgraph, AND its primary outgoing edge.
+// We'll rename it to be more descriptive of its role.
+processNodeAndPrimaryEdge(
+    'workflow_start', // Subgraph name
+    'start',          // Node name
+    workflowContent["root-name"], // Primary link target
+    { type: 'start', position: workflowContent.position, 'display-name': 'Start' }, // Item object (ensure type is set)
+    dotGraphLines,
+    dotEdges,
     styleMap
 );
 
-// Error Handler
+// --- Process Error Handler Node (if present) ---
 if (workflowContent.hasOwnProperty('error-handler') && workflowContent['error-handler'].length > 0) {
     var errorHandlerItem = workflowContent['error-handler'][0];
-
     if (!errorHandlerItem.type) {
         errorHandlerItem.type = 'error-handler'; // Assign the correct type for consistent processing
     }
-    addSubgraphItem(
-        'error_handler',
-        'errorHandler',
-        errorHandlerItem['name'],
-        errorHandlerItem, // Pass the potentially modified item
-        output,
-        edges,
+    if (!errorHandlerItem['display-name']) {
+        errorHandlerItem['display-name'] = "Error Handler"
+    }
+    processNodeAndPrimaryEdge(
+        'error_handler',       // Subgraph name
+        'errorHandler',        // Node name
+        errorHandlerItem['name'], // Primary link target
+        errorHandlerItem,      // Pass the potentially modified item
+        dotGraphLines,
+        dotEdges,
         styleMap
     );
 }
 
+// --- Process all other Workflow Items ---
+var items = workflowContent["workflow-item"];
 for (var i = 0; i < items.length; i++) {
     var item = items[i];
-    var name = item.name;
-    var type = item.type;
-    var label = item["display-name"] || type;
-    var tooltip = label;
-    var href = "#" + name;
-    var pos = item.position ? item.position.x + "," + item.position.y : "0,0";
 
-    var nodeId = getNodeId(item);
+    // Render the node and its subgraph. Regular workflow items don't have a single 'linkTarget'
+    // in the same way start/errorHandler do, so we pass null/undefined for it here.
+    processNodeAndPrimaryEdge(
+        item.name, // Subgraph name (same as item name for regular items)
+        item.name, // Node name
+        null,      // No primary link target for general items (edges handled below)
+        item,      // The workflow item object
+        dotGraphLines,
+        dotEdges,
+        styleMap
+    );
 
-    var style;
-    if (type === "start") {
-        style = styleMap["start"];
-    } else if (type === "end" && item["end-mode"] !== undefined) {
-        style = styleMap["end"][item["end-mode"]] || styleMap["end"];
-    } else if (type === "error-handler" || type === "error-item") {
-        style = styleMap["error_handler"];
-    } else {
-        style = styleMap["default"];
-    }
-    style = style || {};
-
-    output.push('    subgraph "cluster_' + name + '" {');
-
-    if (style.subgraph) {
-        output.push('        id="' + nodeId + '";');
-        output.push('        href="' + href + '";');
-        output.push('        tooltip="' + tooltip + '";');
-        for (var k in style.subgraph) {
-            if (k !== "label" && k !== "tooltip" && k !== "href" && k !== "id") {
-                output.push('        ' + k + '="' + style.subgraph[k] + '";');
-            }
-        }
-        if (style.subgraph.label) {
-            output.push('        label="' + style.subgraph.label + '";');
-        } else {
-            output.push('        label="' + label + '";');
-        }
-        if (style.subgraph.tooltip) {
-            output.push('        tooltip="' + tooltip + '";');
-        }
-    }
-
-    var nodeDef = '        ' + name + ' [id="' + nodeId + '", ';
-    var props = [];
-    if (style.node) {
-        for (var k in style.node) {
-            var val = style.node[k];
-            if (k === "label" && typeof val === "string" && val.trim().charAt(0) === "<") {
-                props.push(k + '=' + val);
-            } else {
-                props.push(k + '="' + val + '"');
-            }
-        }
-    }
-    props.push('tooltip="' + tooltip + '"');
-    props.push('href="' + href + '"');
-    props.push('pos="' + pos + '"');
-    nodeDef += props.join(', ') + '];';
-    output.push(nodeDef);
-    output.push('    }');
-
-    if (item["out-name"] && type === "custom-condition") {
-        edges.push('    ' + name + ' -> ' + item["out-name"] + ' [color="#41800e", ltail="cluster_' + name + '", lhead="cluster_' + item["out-name"] + '"];');
-    } else if (item["out-name"]) {
-        edges.push('    ' + name + ' -> ' + item["out-name"] + ' [ltail="cluster_' + name + '", lhead="cluster_' + item["out-name"] + '"];');
-    }
-    if (item["alt-out-name"]) {
-        edges.push('    ' + name + ' -> ' + item["alt-out-name"] + ' [color="#e02100", style=dashed, ltail="cluster_' + name + '", lhead="cluster_' + item["alt-out-name"] + '"];');
-    }
-
-    if (item["catch-name"]) {
-        edges.push('    ' + name + ' -> ' + item["catch-name"] + ' [color="#e02100", style=dashed, ltail="cluster_' + name + '", lhead="cluster_' + item["catch-name"] + '"];');
-    }
-
-    if (type === "switch" && item.condition && item.condition.length > 0) {
-        for (var c = 0; c < item.condition.length; c++) {
-            var labelTarget = item.condition[c].label;
-            if (labelTarget) {
-                edges.push('    ' + name + ' -> ' + labelTarget + ' [ltail="cluster_' + name + '", lhead="cluster_' + labelTarget + '"];');
-            }
-        }
-    }
+    // Add secondary edges (alt-out, catch, switch) for the current item
+    addSecondaryEdgesForItem(item, dotEdges);
 }
 
-for (var j = 0; j < edges.length; j++) {
-    output.push(edges[j]);
+// --- Append all collected edges ---
+for (var j = 0; j < dotEdges.length; j++) {
+    dotGraphLines.push(dotEdges[j]);
 }
 
-output.push('}');
-var finalDotGraph = output.join('\n');
+// --- Graph Footer ---
+dotGraphLines.push('}');
+
+var finalDotGraph = dotGraphLines.join('\n');
 System.debug(finalDotGraph);
 return finalDotGraph;
 
 
+// -----------------------------------------------------------
 // --- Helper Functions ---
+// -----------------------------------------------------------
 
+/**
+ * Determines the unique ID for a node based on its type and properties.
+ * @param {Object} item The workflow item object.
+ * @returns {string} The computed node ID.
+ */
 function getNodeId(item) {
     var type = item.type;
     var script = (item.script && item.script.value) ? item.script.value : "";
@@ -835,87 +985,197 @@ function getNodeId(item) {
 
     if (type === "end") {
         if (item["end-mode"] !== undefined) {
-            if (item["end-mode"] === "0") {
-                return "end";
-            } else if (item["end-mode"] === "1") {
-                return "exception";
-            }
+            if (item["end-mode"] === "0") return "end";
+            if (item["end-mode"] === "1") return "exception";
         }
     }
-    if (script.indexOf("workflowToLaunch.schedule") !== -1) {
-        return "workflow-schedule";
-    }
-    if (script.indexOf("workflowToLaunch.execute") !== -1) {
-        return "workflow-async";
-    }
-    if (prototypeId) {
-        return prototypeId;
-    }
-    if (scriptModule) {
-        return "scripting-element";
-    }
-    if (type === "start") {
-        return "start";
-    }
-    if (type === "error-handler" || type === "error-item") {
-        return "error-handler";
-    }
+    if (script.indexOf("workflowToLaunch.schedule") !== -1) return "workflow-schedule";
+    if (script.indexOf("workflowToLaunch.execute") !== -1) return "workflow-async";
+    if (prototypeId) return prototypeId;
+    if (scriptModule) return "scripting-element";
+    if (type === "start") return "start";
+    if (type === "error-handler" || type === "error-item") return "error-handler";
 
     // Fallback to the general item type
     return type;
 }
 
-function addSubgraphItem(subgraphName, nodeName, linkTarget, itemObject, outputArray, edgeArray, styleMap) {
+/**
+ * Retrieves the style object for a given workflow item based on its type and end-mode.
+ * @param {Object} item The workflow item object.
+ * @param {Object} styleMap The loaded style map.
+ * @returns {Object} The style object (can be empty if no specific style).
+ */
+function getItemStyle(item, styleMap) {
+    var type = item.type;
+    var style;
+
+    if (type === "start") {
+        style = styleMap["start"];
+    } else if (type === "end" && item["end-mode"] !== undefined) {
+        style = styleMap["end"][item["end-mode"]] || styleMap["end"];
+    } else if (type === "error-handler" || type === "error-item") {
+        style = styleMap["error-handler"];
+    } else {
+        style = styleMap["default"];
+    }
+    return style || {}; // Ensure style is always an object
+}
+
+/**
+ * Formats an object of attributes into a comma-separated string suitable for Node definitions in DOT.
+ * Handles HTML-like labels by not quoting them.
+ * @param {Object} attributes Object containing key-value pairs.
+ * @returns {string} Formatted attribute string.
+ */
+function formatNodeAttributes(attributes) {
+    var props = [];
+    for (var key in attributes) {
+        if (attributes.hasOwnProperty(key)) {
+            var value = attributes[key];
+            if (key === "label" && typeof value === "string" && value.trim().charAt(0) === "<") {
+                // HTML-like label should not be quoted
+                props.push(key + '=' + value);
+            } else {
+                // All other values should be quoted
+                props.push(key + '="' + value + '"');
+            }
+        }
+    }
+    return props.join(', ');
+}
+
+/**
+ * Processes a single workflow item, generating its subgraph, node, and its primary outgoing edge.
+ * This function closely mimics the original `addSubgraphItem` behavior.
+ *
+ * @param {string} subgraphName The name for the cluster subgraph (e.g., 'workflow_start' or item.name).
+ * @param {string} nodeName The identifier for the node within the subgraph (e.g., 'start' or item.name).
+ * @param {string|null} primaryLinkTarget The name of the target node for the primary outgoing edge (e.g., workflow's root-name for 'start').
+ * @param {Object} itemObject The full workflow item object.
+ * @param {string[]} outputArray The array to push DOT lines for nodes/subgraphs.
+ * @param {string[]} edgeArray The array to push DOT lines for edges.
+ * @param {Object} styleMap The loaded style map.
+ */
+function processNodeAndPrimaryEdge(subgraphName, nodeName, primaryLinkTarget, itemObject, outputArray, edgeArray, styleMap) {
     var nodeId = getNodeId(itemObject);
-    var typeForStyleLookup = itemObject.type;
+    var type = itemObject.type; // Use itemObject's type for style lookup
+    var label = itemObject["display-name"] || type;
+    var tooltip = label;
+    var href = "#" + nodeName; // Use nodeName as href target for consistency
+    var pos = itemObject.position ? itemObject.position.x + "," + itemObject.position.y : "0,0";
 
-    var position = itemObject.position ? itemObject.position.x + "," + itemObject.position.y : "0,0";
+    var style = getItemStyle(itemObject, styleMap); // Get style based on the itemObject
 
+    // --- Subgraph Definition (cluster) - using semicolon-terminated individual attributes ---
     outputArray.push('    subgraph "cluster_' + subgraphName + '" {');
-    var style = styleMap[typeForStyleLookup];
-    style = style || {}; // Ensure style is an object
 
     if (style.subgraph) {
-        outputArray.push('        id="' + nodeId + '";');
+        outputArray.push('        id="' + nodeId + '";'); // Required for icon replacement
+        outputArray.push('        href="' + href + '";'); // Link for cluster
+        outputArray.push('        tooltip="' + tooltip + '";'); // Tooltip for cluster
+
         for (var k in style.subgraph) {
-            if (k !== "id") {
-                outputArray.push('        ' + k + '="' + style.subgraph[k] + '";');
+            if (style.subgraph.hasOwnProperty(k)) {
+                // Avoid duplicating mandatory attributes already pushed by name
+                if (k !== "label" && k !== "tooltip" && k !== "href" && k !== "id") {
+                    outputArray.push('        ' + k + '="' + style.subgraph[k] + '";');
+                }
             }
+        }
+        // Explicitly handle label from style.subgraph if present, otherwise use default label
+        if (style.subgraph.label) {
+            outputArray.push('        label="' + style.subgraph.label + '";');
+        } else {
+            outputArray.push('        label="' + label + '";'); // Default label for subgraph
+        }
+    } else {
+        // If no subgraph style, just ensure mandatory attributes and default label are set
+        outputArray.push('        id="' + nodeId + '";');
+        outputArray.push('        href="' + href + '";');
+        outputArray.push('        tooltip="' + tooltip + '";');
+        outputArray.push('        label="' + label + '";');
+    }
+
+    // --- Node Definition - using comma-separated attributes in a single block ---
+    var nodeAttrs = {};
+    if (style.node) {
+        for (var k in style.node) {
+            if (style.node.hasOwnProperty(k)) {
+                nodeAttrs[k] = style.node[k];
+            }
+        }
+    }
+    // Always include these mandatory node attributes
+    nodeAttrs.id = nodeId; // Required for icon replacement
+    nodeAttrs.tooltip = tooltip;
+    nodeAttrs.href = href;
+    nodeAttrs.pos = pos; // Position from workflow XML
+
+    outputArray.push('        ' + nodeName + ' [' + formatNodeAttributes(nodeAttrs) + '];');
+    outputArray.push('    }'); // Close subgraph block
+
+    // --- Primary Edge Addition (mimicking original addSubgraphItem's behavior) ---
+    if (primaryLinkTarget) {
+        edgeArray.push('    ' + nodeName + ' -> ' + primaryLinkTarget + ' [ltail="cluster_' + subgraphName + '", lhead="cluster_' + primaryLinkTarget + '"];');
+    }
+}
+
+/**
+ * Adds "secondary" outgoing edges (alt-out, catch, switch conditions) for a given workflow item.
+ * This separates concerns from the primary node/subgraph/main-link rendering.
+ * @param {Object} itemObject The workflow item object.
+ * @param {string[]} edgeArray The array to push DOT lines for edges.
+ */
+function addSecondaryEdgesForItem(itemObject, edgeArray) {
+    var name = itemObject.name; // Source node name
+    var type = itemObject.type;
+    var currentCluster = 'cluster_' + name; // Source cluster name
+
+    // Regular 'out-name' (non-custom-condition) is handled by processNodeAndPrimaryEdge for general items
+    // as the 'primaryLinkTarget' would be null. So we need to handle it here for general items.
+    // However, the original code had this logic separate. Let's replicate original carefully:
+    if (itemObject["out-name"]) {
+        var targetCluster = 'cluster_' + itemObject["out-name"];
+        if (type === "custom-condition") {
+            // Specific edge for custom-condition's out-name
+            edgeArray.push('    ' + name + ' -> ' + itemObject["out-name"] + ' [color="#41800e", ltail="' + currentCluster + '", lhead="' + targetCluster + '"];');
+        } else if (type !== "start" && type !== "error-handler") { // Only for regular items, as start/error-handler handled by processNodeAndPrimaryEdge
+            edgeArray.push('    ' + name + ' -> ' + itemObject["out-name"] + ' [ltail="' + currentCluster + '", lhead="' + targetCluster + '"];');
         }
     }
 
-    var nodeDef = '        ' + nodeName + ' [id="' + nodeId + '", ';
-    var props = [];
-    if (style.node) {
-        for (var k in style.node) {
-            var val = style.node[k];
-            if (k === "label" && typeof val === "string" && val.trim().charAt(0) === "<") {
-                props.push(k + '=' + val);
-            } else {
-                props.push(k + '="' + val + '"');
+    if (itemObject["alt-out-name"]) {
+        var targetCluster = 'cluster_' + itemObject["alt-out-name"];
+        edgeArray.push('    ' + name + ' -> ' + itemObject["alt-out-name"] + ' [color="#e02100", style=dashed, ltail="' + currentCluster + '", lhead="' + targetCluster + '"];');
+    }
+
+    if (itemObject["catch-name"]) {
+        var targetCluster = 'cluster_' + itemObject["catch-name"];
+        edgeArray.push('    ' + name + ' -> ' + itemObject["catch-name"] + ' [color="#e02100", style=dashed, ltail="' + currentCluster + '", lhead="' + targetCluster + '"];');
+    }
+
+    if (type === "switch" && itemObject.condition && itemObject.condition.length > 0) {
+        for (var c = 0; c < itemObject.condition.length; c++) {
+            var labelTarget = itemObject.condition[c].label;
+            if (labelTarget) {
+                var targetCluster = 'cluster_' + labelTarget;
+                edgeArray.push('    ' + name + ' -> ' + labelTarget + ' [ltail="' + currentCluster + '", lhead="' + targetCluster + '"];');
             }
         }
     }
-    props.push('pos="' + position + '"');
-    nodeDef += props.join(', ') + '];';
-    outputArray.push(nodeDef);
-    outputArray.push('    }');
-    edgeArray.push('    ' + nodeName + ' -> ' + linkTarget + ' [ltail="cluster_' + subgraphName + '", lhead="cluster_' + linkTarget + '"];');
 }
+
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getOrCreateResourceElement</td></tr>
+</table><br><table><tr><th>Name</th><td>getOrCreateResourceElement</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.resource</td></tr>
 <tr><th>ID</th><td>eaece025-db2a-45ac-9ee2-23e96fbd7a42</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>resourceElementCategoryPath</td><td><code>string</code></td><td>Resource Element Category Path</td></tr>
-<tr><td>resourceElementName</td><td><code>string</code></td><td>Resource Element Name</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>resourceElementCategoryPath</td><td><code>string</code></td><td>Resource Element Category Path</td></tr>
+<tr><td>resourceElementName</td><td><code>string</code></td><td>Resource Element Name</td></tr></table></td></tr>
 <tr><th>Output</th><td>ResourceElement</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -937,18 +1197,14 @@ return Server.createResourceElement(resourceElementCategoryPath, resourceElement
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>renderGraphvizDot</td></tr>
+</table><br><table><tr><th>Name</th><td>renderGraphvizDot</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.graphviz</td></tr>
 <tr><th>ID</th><td>4c462adc-01ab-479f-ab83-aee4c0c17f1e</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>dotSource</td><td><code>string</code></td><td>Graphviz DOT string</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>dotSource</td><td><code>string</code></td><td>Graphviz DOT string</td></tr>
 <tr><td>outputFormat</td><td><code>string</code></td><td>svg | dot | json | dot_json | xdot_json</td></tr>
-<tr><td>layoutEngine</td><td><code>string</code></td><td>circo | dot | fdp | neato | osage | patchwork | twopi</td></tr>
-</table></td></tr>
+<tr><td>layoutEngine</td><td><code>string</code></td><td>circo | dot | fdp | neato | osage | patchwork | twopi</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>documentation | node:20</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -977,17 +1233,13 @@ exports.handler = async (context, inputs) => {
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>postProcessGraphSvgWithIcons</td></tr>
+</table><br><table><tr><th>Name</th><td>postProcessGraphSvgWithIcons</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.graphviz</td></tr>
 <tr><th>ID</th><td>010bdbd0-1728-4ac5-b035-77277bca20c2</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>This is used to replace the nodes rectangle to icons</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>graphvizSvgString</td><td><code>string</code></td><td>Graphviz SVG</td></tr>
-<tr><td>svgIconsJson</td><td><code>string</code></td><td>Icons JSON</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>graphvizSvgString</td><td><code>string</code></td><td>Graphviz SVG</td></tr>
+<tr><td>svgIconsJson</td><td><code>string</code></td><td>Icons JSON</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>documentation | node:20</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -1075,14 +1327,14 @@ exports.handler = (context, inputs, callback) => {
                 console.warn(`Warning: Polygon for node <g id="${nodeId}"> has no 'points' attribute. Skipping.`);
                 return;
             }
-            console.log(`Debug: Node ${nodeId} polygon pointsString: "${pointsString}"`);
+            //console.debug(`Debug: Node ${nodeId} polygon pointsString: "${pointsString}"`);
 
             const points = pointsString.split(' ').flatMap(pair => {
                 const [x, y] = pair.split(',').map(parseFloat);
                 return [x, y];
             });
 
-            console.log(`Debug: Node ${nodeId} parsed points: [${points.join(', ')}]`);
+            //console.debug(`Debug: Node ${nodeId} parsed points: [${points.join(', ')}]`);
 
             let minX = Infinity, minY = Infinity;
             let maxX = -Infinity, maxY = -Infinity;
@@ -1121,7 +1373,7 @@ exports.handler = (context, inputs, callback) => {
 
             if (isNaN(iconOffsetX) || isNaN(iconOffsetY)) {
                 console.error(`Error: Calculated icon offset for node ID: ${nodeId} resulted in NaN. iconOffsetX: ${iconOffsetX}, iconOffsetY: ${iconOffsetY}. Skipping this node.`);
-                console.log(`Debug: minX: ${minX}, minY: ${minY}`);
+                //console.debug(`Debug: minX: ${minX}, minY: ${minY}`);
                 return; // Skip this node as its coordinates are invalid
             }
 
@@ -1132,7 +1384,7 @@ exports.handler = (context, inputs, callback) => {
                 return;
             }
             newIconElement.setAttribute('transform', `translate(${iconOffsetX},${iconOffsetY})`);
-            console.log(`New icon element for ${nodeId} created with transform: translate(${iconOffsetX},${iconOffsetY})`);
+            //console.log(`New icon element for ${nodeId} created with transform: translate(${iconOffsetX},${iconOffsetY})`);
 
             // Robustness step: Serialize and re-parse the newIconElement
             try {
@@ -1142,7 +1394,7 @@ exports.handler = (context, inputs, callback) => {
 
                 if (reParsedIconElement) {
                     newIconElement = reParsedIconElement;
-                    console.log(`Debug: Successfully re-parsed newIconElement for node ${nodeId}.`);
+                    //console.debug(`Debug: Successfully re-parsed newIconElement for node ${nodeId}.`);
                 } else {
                     console.error(`Error: Re-parsing icon element for node ${nodeId} resulted in null/undefined documentElement. Skipping.`);
                     return;
@@ -1161,9 +1413,9 @@ exports.handler = (context, inputs, callback) => {
 
             if (aElement) {
                 parentForReplacement = aElement;
-                console.log(`Debug: Found <a> element for node ${nodeId}. Will use it as parent for replacement.`);
+                //console.debug(`Debug: Found <a> element for node ${nodeId}. Will use it as parent for replacement.`);
             } else {
-                console.log(`Debug: No <a> element found for node ${nodeId}. Will look for polygon directly under <g class="node">.`);
+                //console.debug(`Debug: No <a> element found for node ${nodeId}. Will look for polygon directly under <g class="node">.`);
             }
 
             // Find the polygon within the determined parent
@@ -1234,26 +1486,22 @@ exports.handler = (context, inputs, callback) => {
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>renderMarkdownDoc</td></tr>
+</table><br><table><tr><th>Name</th><td>renderMarkdownDoc</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation.util</td></tr>
 <tr><th>ID</th><td>0c584244-6202-4a51-9d6f-5d68cb348523</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>ctx</td><td><code>string</code></td><td>Documentation context (workflow, navLinks, diagram, steps)</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>ctx</td><td><code>string</code></td><td>Documentation context (workflow, navLinks, diagram, steps)</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
-var inputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Inputs", ctx.workflow.inParameters, false, true);
-var outputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Outputs", ctx.workflow.outParameters, false, true);
+var inputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Inputs", ctx.workflow.inParameters, true);
+var outputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Outputs", ctx.workflow.outParameters, true);
 var attrHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Attributes (Variables)", ctx.workflow.attributes, true, true);
-var usagesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Usages", ctx.usages, true, false);
-var dependenciesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Dependencies", ctx.dependencies, true, false);
+var usagesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Usages", ctx.usages, true);
+var dependenciesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Dependencies", ctx.dependencies, true);
 
 var md = "";
 
@@ -1295,25 +1543,21 @@ return md;
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>renderNamedList</td></tr>
+</table><br><table><tr><th>Name</th><td>renderNamedList</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation.util</td></tr>
 <tr><th>ID</th><td>1e8036d8-4648-46fc-bc2f-db2d86ec3f4a</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>title</td><td><code>string</code></td><td>Title</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>title</td><td><code>string</code></td><td>Title</td></tr>
 <tr><td>items</td><td><code>Array</code></td><td>Items</td></tr>
 <tr><td>includeValue</td><td><code>boolean</code></td><td>Include Values?</td></tr>
-<tr><td>markdown</td><td><code>boolean</code></td><td>Render as markdown?</td></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td>Use Clarity Design</td></tr>
-</table></td></tr>
+<tr><td>markdown</td><td><code>boolean</code></td><td>Render as markdown?</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
+// Handle empty list
 if (!items || items.length === 0) {
     return markdown
         ? "_No " + title + " defined._\n"
@@ -1322,52 +1566,58 @@ if (!items || items.length === 0) {
 
 var output = "";
 
+// Render Markdown table
 if (markdown) {
     output += "| Name | Type | Description" + (includeValue ? " | Value" : "") + " |\n";
     output += "|:-----|:-----|:-------------" + (includeValue ? "|:-------" : "") + "|\n";
+
     for (var i = 0; i < items.length; i++) {
         var row = "| " + (items[i].name || "-") +
             " | `" + (items[i].type || "-") + "`" +
             " | " + (items[i].description || "-");
+
         if (includeValue) {
+            // Format value for display using a helper module
             row += " | " + System.getModule("com.broadcom.pso.vro.util").formatObjectValue(items[i].value);
         }
+
         row += " |\n";
         output += row;
     }
 } else {
-    var tableCls = "table" + (useClarity ? " table-vertical table-compact" : "");
-    output += "<table class='" + tableCls + "'>\n";
-    output += "<tr><th class='left'>Name</th><th class='left'>Type</th><th class='left'>Description</th>";
-    if (includeValue) output += "<th class='left'>Value</th>";
+    // Render HTML table
+    output += "<table>\n";
+    output += "<tr><th>Name</th><th>Type</th><th>Description</th>";
+    if (includeValue) output += "<th>Value</th>";
     output += "</tr>\n";
 
     for (var i = 0; i < items.length; i++) {
         output += "<tr><td>" + (items[i].name || "-") + "</td><td>" +
             (items[i].type || "-") + "</td><td>" +
             (items[i].description || "-") + "</td>";
+
         if (includeValue) {
+            // Format value for display using a helper module
             output += "<td>" + System.getModule("com.broadcom.pso.vro.util").formatObjectValue(items[i].value) + "</td>";
         }
+
         output += "</tr>\n";
     }
+
     output += "</table>";
 }
 
 return output;
+
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>formatObjectValue</td></tr>
+</table><br><table><tr><th>Name</th><td>formatObjectValue</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.util</td></tr>
 <tr><th>ID</th><td>52457c93-8d24-44c3-86cd-1868beeced34</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>obj</td><td><code>Any</code></td><td>Object</td></tr>
-</table></td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>obj</td><td><code>Any</code></td><td>Object</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -1392,25 +1642,20 @@ return "[object]";
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>renderReferenceList</td></tr>
+</table><br><table><tr><th>Name</th><td>renderReferenceList</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation.util</td></tr>
 <tr><th>ID</th><td>b6b4ddc7-5a7e-42a4-a455-d108ae65f6e9</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>title</td><td><code>string</code></td><td>Title</td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>Renders a list of reference items as either an HTML or Markdown table. Each row includes a formatted name, type, and location.</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>title</td><td><code>string</code></td><td>Title</td></tr>
 <tr><td>items</td><td><code>Array</code></td><td>Items</td></tr>
-<tr><td>markdown</td><td><code>boolean</code></td><td>Render as markdown?</td></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td>Use Clarity Design</td></tr>
-</table></td></tr>
+<tr><td>markdown</td><td><code>boolean</code></td><td>Render as markdown?</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
-
+// Return early if the list is empty
 if (!items || items.length === 0) {
     return markdown
         ? "_No " + title + " defined._\n"
@@ -1419,18 +1664,21 @@ if (!items || items.length === 0) {
 
 var output = "";
 
+// Helper: Format the name and ID into a single label
 function formatName(item) {
     var name = item.name || "";
     var id = item.id || "";
     return (name && id) ? name + " - " + id : name || id || "-";
 }
 
+// Helper: Format the location string
 function formatLocation(item) {
     var area = item.refArea || "";
     var refItem = item.refItem || "";
     return (area && refItem) ? area + " - " + refItem : area || refItem || "-";
 }
 
+// Markdown output
 if (markdown) {
     output += "| Name | Type | Location |\n";
     output += "|:-----|:-----|:---------|\n";
@@ -1441,15 +1689,16 @@ if (markdown) {
         output += row;
     }
 } else {
-    var tableCls = "table" + (useClarity ? " table-compact" : "");
-    output += "<table class='" + tableCls + "'>\n";
-    output += "<tr><th class='left'>Name</th><th class='left'>Type</th><th class='left'>Location</th></tr>\n";
+    // HTML output
+    output += "<table>\n";
+    output += "<tr><th>Name</th><th>Type</th><th>Location</th></tr>\n";
 
     for (var i = 0; i < items.length; i++) {
-        output += "<tr><td class='left'>" + formatName(items[i]) + "</td><td class='left'>" +
-            (items[i].type || "-") + "</td><td class='left'>" +
+        output += "<tr><td>" + formatName(items[i]) + "</td><td>" +
+            (items[i].type || "-") + "</td><td>" +
             formatLocation(items[i]) + "</td></tr>\n";
     }
+
     output += "</table>";
 }
 
@@ -1457,533 +1706,338 @@ return output;
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>renderHtmlDoc</td></tr>
+</table><br><table><tr><th>Name</th><td>renderHtmlDoc</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation.util</td></tr>
 <tr><th>ID</th><td>9ea7feba-c08d-43af-ab6f-766d4a600c93</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td>Whether to include Clarity CSS classes and resources</td></tr>
-<tr><td>ctx</td><td><code>Properties</code></td><td>Documentation context (workflow, navLinks, diagram, steps)</td></tr>
-</table></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>This is used to Generate the Workflow Documentation into a HTML Format</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>ctx</td><td><code>Properties</code></td><td>Documentation context (workflow, navLinks, diagram, steps)</td></tr></table></td></tr>
 <tr><th>Output</th><td>string</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
-var inputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Inputs", ctx.workflow.inParameters, false, false, useClarity);
-var outputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Outputs", ctx.workflow.outParameters, false, false, useClarity);
-var attrHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Attributes (Variables)", ctx.workflow.attributes, true, false, useClarity);
-var usagesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Usages", ctx.usages, false, useClarity);
-var dependenciesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Dependencies", ctx.dependencies, false, useClarity);
+var inputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Inputs", ctx.workflow.inParameters, false, false);
+var outputHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Outputs", ctx.workflow.outParameters, false, false);
+var attrHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderNamedList("Attributes (Variables)", ctx.workflow.attributes, true, false);
+var usagesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Usages", ctx.usages, false);
+var dependenciesHtml = System.getModule("com.broadcom.pso.vro.rest.documentation.util").renderReferenceList("Dependencies", ctx.dependencies, false);
+var styles = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'styles.css').getContentAsMimeAttachment().content
+var html = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'template.html').getContentAsMimeAttachment().content
+var highlightJS = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'highlight.min.js').getContentAsMimeAttachment().content
+html = html.replace(/{{ workflow_name }}/g, ctx.workflow.name)
+    .replace(/{{ styles }}/g, styles)
+    .replace(/{{ highlight.js }}/g, highlightJS)
+    .replace(/{{ navlinks }}/g, ctx.navLinks)
+    .replace(/{{ id }}/g, ctx.workflow.id)
+    .replace(/{{ description }}/g, (ctx.workflow.description || "No description available"))
+    .replace(/{{ path }}/g, ctx.workflow.workflowCategory.path)
+    .replace(/{{ category }}/g, ctx.workflow.workflowCategory.name)
+    .replace(/{{ version }}/g, ctx.workflow.version)
+    .replace(/{{ author }}/g, (ctx.author || "System Generated"))
+    .replace(/{{ date }}/g, new Date().toString())
+    .replace(/{{ diagram }}/g, ctx.diagram)
+    .replace(/{{ inputs }}/g, inputHtml)
+    .replace(/{{ outputs }}/g, outputHtml)
+    .replace(/{{ attributes }}/g, attrHtml)
+    .replace(/{{ usages }}/g, usagesHtml)
+    .replace(/{{ dependencies }}/g, dependenciesHtml)
+    .replace(/{{ steps }}/g, ctx.steps)
 
-if (useClarity) {
-    var html = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'clarity-template.html').getContentAsMimeAttachment().content
-    html = html.replace(/{{ workflow_name }}/g, ctx.workflow.name)
-        .replace(/{{ navlinks }}/g, ctx.navLinks)
-        .replace(/{{ id }}/g, ctx.workflow.id)
-        .replace(/{{ description }}/g, (ctx.workflow.description || "No description available"))
-        .replace(/{{ path }}/g, ctx.workflow.workflowCategory.path)
-        .replace(/{{ category }}/g, ctx.workflow.workflowCategory.name)
-        .replace(/{{ version }}/g, ctx.workflow.version)
-        .replace(/{{ author }}/g, (ctx.author || "System Generated"))
-        .replace(/{{ date }}/g, new Date().toString())
-        .replace(/{{ diagram }}/g, ctx.diagram)
-        .replace(/{{ inputs }}/g, inputHtml)
-        .replace(/{{ outputs }}/g, outputHtml)
-        .replace(/{{ attributes }}/g, attrHtml)
-        .replace(/{{ usages }}/g, usagesHtml)
-        .replace(/{{ dependencies }}/g, dependenciesHtml)
-        .replace(/{{ steps }}/g, ctx.steps)
-
-    return html
-} else {
-    var styles = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'styles.css').getContentAsMimeAttachment().content
-    var html = System.getModule("com.broadcom.pso.vro.resource").getOrCreateResourceElement('Documentation/Config', 'template.html').getContentAsMimeAttachment().content
-    html = html.replace(/{{ workflow_name }}/g, ctx.workflow.name)
-        .replace(/{{ styles }}/g, styles)
-        .replace(/{{ navlinks }}/g, ctx.navLinks.replace(/<a /g, '<li><a ').replace(/<\/a>/g, '</a></li>\n'))
-        .replace(/{{ id }}/g, ctx.workflow.id)
-        .replace(/{{ description }}/g, (ctx.workflow.description || "No description available"))
-        .replace(/{{ path }}/g, ctx.workflow.workflowCategory.path)
-        .replace(/{{ category }}/g, ctx.workflow.workflowCategory.name)
-        .replace(/{{ version }}/g, ctx.workflow.version)
-        .replace(/{{ author }}/g, (ctx.author || "System Generated"))
-        .replace(/{{ date }}/g, new Date().toString())
-        .replace(/{{ diagram }}/g, ctx.diagram)
-        .replace(/{{ inputs }}/g, inputHtml)
-        .replace(/{{ outputs }}/g, outputHtml)
-        .replace(/{{ attributes }}/g, attrHtml)
-        .replace(/{{ usages }}/g, usagesHtml)
-        .replace(/{{ dependencies }}/g, dependenciesHtml)
-        .replace(/{{ steps }}/g, ctx.steps.replace(/<h3>/g, '<li><h3>').replace(/<\/table>/g, '</table></li>'))
-
-    return html
-}
+return html
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>renderWorkflowStep</td></tr>
+</table><br><table><tr><th>Name</th><td>renderWorkflowStep</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.documentation.util</td></tr>
 <tr><th>ID</th><td>dbbef81f-7f5b-4973-89e9-4b8822269883</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>item</td><td><code>Properties</code></td><td>Item</td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
+<tr><th>Description</th><td>Renders a workflow step as either an HTML/Markdown table or section layout.</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>item</td><td><code>Properties</code></td><td>Item</td></tr>
 <tr><td>path</td><td><code>string</code></td><td>Path</td></tr>
-<tr><td>stepNumber</td><td><code>number</code></td><td>Step Number</td></tr>
-<tr><td>useClarity</td><td><code>boolean</code></td><td>Use Clarity?</td></tr>
 <tr><td>type</td><td><code>string</code></td><td>html or markdown</td></tr>
-</table></td></tr>
+<tr><td>asTable</td><td><code>boolean</code></td><td>Render as a table (true) or sectioned layout (false)</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
-function cls(base, tagType) {
-    if ((tagType === 'th' || tagType === 'td') && base === 'left') {
-        return useClarity ? "left" : "";
-    }
-    return useClarity ? base : "";
-}
-
-var label = item["display-name"] || item.name;
-var sectionTitle = "Step " + stepNumber + " - " + label + " (" + path + " path)";
+var label = item["display-name"] || (item.type == "end" ? "End Workflow" : item.type) || item.name;
+var sectionTitle = label + " [" + path + " path]";
 var anchor = item.name;
+
 var html = "<h3><a name='" + anchor + "'>" + sectionTitle + "</a></h3>\n";
-html += "<table class='table" + (useClarity ? " table-vertical table-compact" : "") + "'>\n";
 
-html += "<tr><th class='" + cls("left", "th") + "'>Name</th><td class='" + cls("left", "td") + "'>" + item.name + "</td></tr>\n";
-html += "<tr><th class='" + cls("left", "th") + "'>Display Name</th><td class='" + cls("left", "td") + "'>" + item["display-name"] + "</td></tr>\n";
-html += "<tr><th class='" + cls("left", "th") + "'>Type</th><td class='" + cls("left", "td") + "'>" + item.type + "</td></tr>\n";
-html += "<tr><th class='" + cls("left", "th") + "'>Description</th><td class='" + cls("left", "td") + "'>" + (item.description || "No description") + "</td></tr>\n";
+// Wrapper rendering: table or block style
+if (asTable) {
+    html += "<table>\n";
+    html += row("Name", item.name);
+    html += row("Display Name", item["display-name"]);
+    html += row("Type", item.type);
+    html += row("Description", item.description || "No description");
+    if (item["script-module"]) html += row("Script Module", item["script-module"]);
+    if (item["prototype-id"]) html += row("Prototype ID", item["prototype-id"]);
+    if (item["throw-bind-name"]) html += row("Error Bind", item["throw-bind-name"]);
+    if (item['in-binding']) html += row("Input Bindings", renderBindings(item['in-binding']));
+    if (item['out-binding']) html += row("Output Bindings", renderBindings(item['out-binding']));
+    if (item["runtime"]) html += row("Runtime", item["runtime"]);
 
-if (item["script-module"]) html += "<tr><th class='" + cls("left", "th") + "'>Script Module</th><td class='" + cls("left", "td") + "'>" + item["script-module"] + "</td></tr>\n";
-if (item["prototype-id"]) html += "<tr><th class='" + cls("left", "th") + "'>Prototype ID</th><td class='" + cls("left", "td") + "'>" + item["prototype-id"] + "</td></tr>\n";
-if (item["throw-bind-name"]) html += "<tr><th class='" + cls("left", "th") + "'>Error Bind</th><td class='" + cls("left", "td") + "'>" + item["throw-bind-name"] + "</td></tr>\n";
-if (item["runtime"]) html += "<tr><th class='" + cls("left", "th") + "'>Runtime</th><td class='" + cls("left", "td") + "'>" + item["runtime"] + "</td></tr>\n";
+    if (item["script"] && item["script"].value) {
+        var lang = item.runtime || 'javascript';
+        html += row("Script", codeBlock(lang, item["script"].value), true);
+    }
 
-if (item["script"] && item["script"].value) {
-    var lang = item.runtime || 'javascript';
-    if (type == 'markdown') {
-        html += "<tr><th class='" + cls("left", "th") + "'>Script</th><td class='script " + cls("left", "td") + "'>\n\n```" + mapRuntimeToHighlightLanguage(lang) + "\n" + item["script"].value + "\n```\n\n</td></tr>\n";
+    if (item.type === 'condition' || item.type === 'custom-condition') {
+        html += row("Condition True", item['out-name']);
+        html += row("Condition False", item['alt-out-name']);
+    }
+
+    if (item.type === 'switch' && item.condition) {
+        html += row("Switch Cases", renderConditionTable(item.condition));
+    }
+
+    if ((item.type === 'link' || item.type === 'foreach') && (item['linked-workflow-id'] || item.reference)) {
+        html += row("Linked Workflow", renderWorkflowInfo(item));
+    }
+
+    if (item.type === 'multiple' && item['workflow-subelements-list']) {
+        html += row("Multiple Workflows", renderMultipleSubWorkflows(item));
+    }
+
+    if (item.type === 'task' && item.item && item.item.usedActions) {
+        html += row("Used Actions", renderActions(item.item.usedActions));
+    }
+
+    html += "</table>\n";
+} else {
+    // Header-based section layout
+    html += renderSection("Name", item.name);
+    html += renderSection("Display Name", item["display-name"]);
+    html += renderSection("Type", item.type);
+    html += renderSection("Description", item.description || "No description");
+    if (item["script-module"]) html += renderSection("Script Module", item["script-module"]);
+    if (item["prototype-id"]) html += renderSection("Prototype ID", item["prototype-id"]);
+    if (item["throw-bind-name"]) html += renderSection("Error Bind", item["throw-bind-name"]);
+    if (item['in-binding']) html += renderSection("Input Bindings", renderBindings(item['in-binding']));
+    if (item['out-binding']) html += renderSection("Output Bindings", renderBindings(item['out-binding']));
+    if (item["runtime"]) html += renderSection("Runtime", item["runtime"]);
+
+    if (item["script"] && item["script"].value) {
+        var lang = item.runtime || 'javascript';
+        html += renderSection("Script", codeBlock(lang, item["script"].value), true);
+    }
+
+    if (item.type === 'condition' || item.type === 'custom-condition') {
+        html += renderSection("Condition True", item['out-name']);
+        html += renderSection("Condition False", item['alt-out-name']);
+    }
+
+    if (item.type === 'switch' && item.condition) {
+        html += renderSection("Switch Cases", renderConditionTable(item.condition));
+    }
+
+    if ((item.type === 'link' || item.type === 'foreach') && (item['linked-workflow-id'] || item.reference)) {
+        html += renderSection("Linked Workflow", renderWorkflowInfo(item));
+    }
+
+    if (item.type === 'multiple' && item['workflow-subelements-list']) {
+        html += renderSection("Multiple Workflows", renderMultipleSubWorkflows(item));
+    }
+
+    if (item.type === 'task' && item.item && item.item.usedActions) {
+        html += renderSection("Used Actions", renderActions(item.item.usedActions));
+    }
+}
+
+if (type == 'html') {
+    if (asTable) {
+        var finalhtml = "<li>\n" + html + "\n</li>"
     } else {
-        html += "<tr><th class='" + cls("left", "th") + "'>Script</th><td class='script " + cls("left", "td") + "'><pre><code class='language-" + mapRuntimeToHighlightLanguage(lang) + "'>" + escapeHtml(item["script"].value) + "</code></pre></td></tr>\n";
+        var finalhtml = "<li class='card'>\n" + html + "\n</li>"
     }
+} else {
+    var finalhtml = html + "\n\n---"
 }
-
-// Input Bindings
-if (item['in-binding'] && item['in-binding']['bind']) {
-    var inTable = "<table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>\n";
-    item['in-binding']['bind'].forEach(function (b) {
-        inTable += "<tr><td>" + b.name + "</td><td><code>" + b.type + "</code></td><td>" + (b.description ? b.description : "") + "</td><td>" + b["export-name"] + "</td></tr>\n";
-    });
-    inTable += "</table>\n";
-    html += "<tr><th class='" + cls("left", "th") + "'>Input Bindings</th><td class='" + cls("left", "td") + "'>" + inTable + "</td></tr>\n";
-}
-
-// Output Bindings
-if (item['out-binding'] && item['out-binding']['bind']) {
-    var outTable = "<table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>\n";
-    item['out-binding']['bind'].forEach(function (b) {
-        outTable += "<tr><td>" + b.name + "</td><td><code>" + b.type + "</code></td><td>" + (b.description ? b.description : "") + "</td><td>" + b["export-name"] + "</td></tr>\n";
-    });
-    outTable += "</table>\n";
-    html += "<tr><th class='" + cls("left", "th") + "'>Output Bindings</th><td class='" + cls("left", "td") + "'>" + outTable + "</td></tr>\n";
-}
-
-if (item.type === 'condition' || item.type === 'custom-condition') {
-    html += "<tr><th class='" + cls("left", "th") + "'>Condition True</th><td class='" + cls("left", "td") + "'>" + item['out-name'] + "</td></tr>\n";
-    html += "<tr><th class='" + cls("left", "th") + "'>Condition False</th><td class='" + cls("left", "td") + "'>" + item['alt-out-name'] + "</td></tr>\n";
-}
-
-if (item.type === 'switch' && item.condition) {
-    var switchTable = "<table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Condition</th><th>Target</th></tr>\n";
-    item.condition.forEach(function (c) {
-        switchTable += "<tr><td>" + c.value + "</td><td>" + c.label + "</td></tr>\n";
-    });
-    switchTable += "</table>\n";
-    html += "<tr><th class='" + cls("left", "th") + "'>Switch Cases</th><td class='" + cls("left", "td") + "'>" + switchTable + "</td></tr>\n";
-}
-
-if ((item.type === 'link' || item.type === 'foreach') && (item['linked-workflow-id'] || item.reference)) {
-    var linkedId = item.type === 'foreach' ? item.reference.id : item['linked-workflow-id'];
-    var linkedWorkflow = Server.getWorkflowWithId(linkedId);
-    if (linkedWorkflow) {
-        var linkHtml = "<table class='table" + (useClarity ? " table-vertical table-compact" : "") + "'>\n";
-        linkHtml += "<tr><th>Name</th><td>" + linkedWorkflow.name + "</td></tr>\n";
-        linkHtml += "<tr><th>Version</th><td><code>" + linkedWorkflow.version + "</code></td></tr>\n";
-        linkHtml += "<tr><th>ID</th><td>" + linkedWorkflow.id + "</td></tr>\n";
-        linkHtml += "<tr><th>Description</th><td>" + (linkedWorkflow.description || "No description") + "</td></tr>\n";
-
-        if (linkedWorkflow.inParameters.length > 0) {
-            linkHtml += "<tr><th>Inputs</th><td><table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th></tr>\n";
-            linkedWorkflow.inParameters.forEach(function (p) {
-                linkHtml += "<tr><td>" + p.name + "</td><td><code>" + p.type + "</code></td><td>" + (p.description || "") + "</td></tr>\n";
-            });
-            linkHtml += "</table></td></tr>";
-        }
-
-        if (linkedWorkflow.outParameters.length > 0) {
-            linkHtml += "<tr><th>Outputs</th><td><table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th></tr>";
-            linkedWorkflow.outParameters.forEach(function (p) {
-                linkHtml += "<tr><td>" + p.name + "</td><td><code>" + p.type + "</code></td><td>" + (p.description || "") + "</td></tr>\n";
-            });
-            linkHtml += "</table></td></tr>\n";
-        }
-
-        linkHtml += "</table>\n";
-        html += "<tr><th class='" + cls("left", "th") + "'>Linked Workflow</th><td class='" + cls("left", "td") + "'>" + linkHtml + "</td></tr>\n";
-    }
-}
-
-if (item.type === 'multiple' && item['workflow-subelements-list']) {
-    var subEls = item['workflow-subelements-list']['workflow-subelement'];
-    var multiHtml = "";
-    for each(var wf in subEls) {
-        var subWf = Server.getWorkflowWithId(wf['linked-workflow-id']);
-        if (subWf) {
-            var inner = "<table class='table" + (useClarity ? " table-vertical table-compact" : "") + "'>\n";
-            inner += "<tr><th>Name</th><td>" + subWf.name + "</td></tr>\n";
-            inner += "<tr><th>Version</th><td><code>" + subWf.version + "</code></td></tr>\n";
-            inner += "<tr><th>ID</th><td>" + subWf.id + "</td></tr>";
-            inner += "<tr><th>Description</th><td>" + (subWf.description || "No description") + "</td></tr>\n";
-
-            if (subWf.inParameters.length > 0) {
-                inner += "<tr><th>Inputs</th><td><table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th></tr>\n";
-                subWf.inParameters.forEach(function (p) {
-                    inner += "<tr><td>" + p.name + "</td><td><code>" + p.type + "</code></td><td>" + (p.description || "") + "</td></tr>\n";
-                });
-                inner += "</table></td></tr>\n";
-            }
-
-            if (subWf.outParameters.length > 0) {
-                inner += "<tr><th>Outputs</th><td><table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th></tr>\n";
-                subWf.outParameters.forEach(function (p) {
-                    inner += "<tr><td>" + p.name + "</td><td><code>" + p.type + "</code></td><td>" + (p.description || "") + "</td></tr>\n";
-                });
-                inner += "</table></td></tr>\n";
-            }
-
-            inner += "</table><br>\n";
-            multiHtml += inner;
-        }
-    }
-
-    if (multiHtml !== "") {
-        html += "<tr><th class='" + cls("left", "th") + "'>Multiple Workflows</th><td class='" + cls("left", "td") + "'>" + multiHtml + "</td></tr>\n";
-    }
-}
-
-if (item.type === 'task' && item.item && item.item.usedActions) {
-    var actions = item.item.usedActions;
-    if (actions.length > 0) {
-        var actionsHtml = "";
-        actions.forEach(function (action) {
-            actionsHtml += "<table class='table" + (useClarity ? " table-compact" : "") + "'>\n";
-            actionsHtml += "<tr><th>Name</th><td>" + action.name + "</td></tr>\n";
-            actionsHtml += "<tr><th>Module</th><td>" + action.module.name + "</td></tr>\n";
-            actionsHtml += "<tr><th>ID</th><td>" + action.id + "</td></tr>\n";
-            actionsHtml += "<tr><th>Version</th><td><code>" + action.version + "</code></td></tr>\n";
-            actionsHtml += "<tr><th>Description</th><td>" + (action.description || "No description") + "</td></tr>\n";
-            actionsHtml += "<tr><th>Inputs</th><td><table class='table" + (useClarity ? " table-compact" : "") + "'><tr><th>Name</th><th>Type</th><th>Description</th></tr>\n";
-            (action.parameters || []).forEach(function (p) {
-                actionsHtml += "<tr><td>" + p.name + "</td><td><code>" + p.type + "</code></td><td>" + (p.description || "") + "</td></tr>\n";
-            });
-            actionsHtml += "</table></td></tr>\n";
-            actionsHtml += "<tr><th>Output</th><td>" + action.returnType + "</td></tr>\n";
-            var runtime = 'Javascript'
-            var apiAction = System.getModule("com.broadcom.pso.vro.rest.action").getActionByScriptModule(action.id);
-            if (apiAction.actionEnvironmentId) {
-                var actionEnvironment = System.getModule("com.broadcom.pso.vro.rest.action").getActionEnvironment(apiAction.actionEnvironmentId)
-                actionEnvironment['attributes'].forEach(function (a) {
-                    if (a.name == 'runtime') {
-                        runtime = a.value
-                    }
-                })
-            } else if (apiAction.runtime) {
-                runtime = apiAction.runtime
-            }
-            actionsHtml += "<tr><th>Runtime Environment</th><td>" + (
-                (apiAction.actionEnvironmentName && runtime ?
-                    apiAction.actionEnvironmentName + " | " + runtime :
-                    apiAction.actionEnvironmentName
-                ) || runtime) + "</td></tr>\n";
-            if (type == 'markdown') {
-                actionsHtml += "<tr><th>Script</th><td class='script'>\n\n```" + mapRuntimeToHighlightLanguage(runtime) + "\n" + action.script + "\n```\n\n</td></tr>\n";
-            } else {
-                actionsHtml += "<tr><th>Script</th><td class='script'><pre><code class='language-" + mapRuntimeToHighlightLanguage(runtime) + "'>" + escapeHtml(action.script) + "</code></pre></td></tr>\n";
-            }
-            actionsHtml += "</table><br>\n";
-            ;
-        });
-        html += "<tr><th class='" + cls("left", "th") + "'>Used Actions</th><td class='" + cls("left", "td") + "'>" + actionsHtml + "</td></tr>\n";
-    }
-}
-
-html += "</table>\n";
 
 return {
-    section: html,
-    link: "<a class='nav-link' href='#" + anchor + "'>" + sectionTitle + "</a>"
+    section: finalhtml,
+    link: "<li><a href='#" + anchor + "'>" + sectionTitle + "</a></li>"
 };
+
+function row(label, value, isScript) {
+    var tdClass = isScript ? " class='script'" : "";
+    return "<tr><th>" + label + "</th><td" + tdClass + ">" + value + "</td></tr>\n";
+}
+
+function renderSection(label, content, isScript) {
+    var divClass = isScript ? " class='script'" : "";
+    return "<h4>" + label + "</h4><div" + divClass + ">" + content + "</div>\n";
+}
+
+function codeBlock(runtime, script) {
+    if (type === 'markdown') {
+        return "\n\n```" + mapRuntimeToHighlightLanguage(runtime) + "\n" + script + "\n```\n\n";
+    } else {
+        return "<pre><code class='language-" + mapRuntimeToHighlightLanguage(runtime) + "'>" + escapeHtml(script) + "</code></pre>";
+    }
+}
+
+function renderBindings(binding) {
+    if (!binding || !binding.bind) return "";
+    var rows = binding.bind.map(function (b) {
+        return "<tr><td>" + b.name + "</td><td><code>" + b.type + "</code></td><td>" + (b.description || "") + "</td><td>" + b["export-name"] + "</td></tr>";
+    }).join("\n");
+    return "<table><tr><th>Name</th><th>Type</th><th>Description</th><th>Export Name</th></tr>" + rows + "</table>";
+}
+
+function renderConditionTable(conditions) {
+    var rows = conditions.map(function (c) {
+        return "<tr><td>" + c.value + "</td><td>" + c.label + "</td></tr>";
+    }).join("\n");
+    return "<table><tr><th>Condition</th><th>Target</th></tr>" + rows + "</table>";
+}
+
+function renderWorkflowInfo(item) {
+    var linkedId = item.type === 'foreach' ? item.reference.id : item['linked-workflow-id'];
+    var wf = Server.getWorkflowWithId(linkedId);
+    if (!wf) return "Not found";
+
+    var html = "<table>\n";
+    html += row("Name", wf.name);
+    html += row("Version", "<code>" + wf.version + "</code>");
+    html += row("ID", wf.id);
+    html += row("Description", wf.description || "No description");
+    if (wf.inParameters.length > 0) html += row("Inputs", renderParameterTable(wf.inParameters));
+    if (wf.outParameters.length > 0) html += row("Outputs", renderParameterTable(wf.outParameters));
+    html += "</table>";
+    return html;
+}
+
+function renderMultipleSubWorkflows(item) {
+    var subEls = item['workflow-subelements-list']['workflow-subelement'];
+    return subEls.map(function (wf) {
+        return renderWorkflowInfo({ type: 'link', 'linked-workflow-id': wf['linked-workflow-id'] });
+    }).join("<br>");
+}
+
+function renderParameterTable(params) {
+    var rows = params.map(function (p) {
+        return "<tr><td>" + p.name + "</td><td><code>" + p.type + "</code></td><td>" + (p.description || "") + "</td></tr>";
+    }).join("\n");
+    return "<table><tr><th>Name</th><th>Type</th><th>Description</th></tr>" + rows + "</table>";
+}
+
+function renderActions(actions) {
+    return actions.map(function (action) {
+        var html = "<table>";
+        html += row("Name", action.name);
+        html += row("Module", action.module.name);
+        html += row("ID", action.id);
+        html += row("Version", "<code>" + action.version + "</code>");
+        html += row("Description", action.description || "No description");
+        html += row("Inputs", renderParameterTable(action.parameters || []));
+        html += row("Output", action.returnType);
+
+        var runtime = 'Javascript';
+        var apiAction = System.getModule("com.broadcom.pso.vro.rest.action").getActionByScriptModule(action.id);
+
+        if (apiAction.actionEnvironmentId) {
+            var env = System.getModule("com.broadcom.pso.vro.rest.action").getActionEnvironment(apiAction.actionEnvironmentId);
+            env.attributes.forEach(function (a) {
+                if (a.name === 'runtime') runtime = a.value;
+            });
+        } else if (apiAction.runtime) {
+            runtime = apiAction.runtime;
+        }
+
+        var runtimeStr = apiAction.actionEnvironmentName ? apiAction.actionEnvironmentName + " | " + runtime : runtime;
+        html += row("Runtime Environment", runtimeStr);
+        html += row("Script", codeBlock(runtime, action.script), true);
+        html += "</table><br>";
+        return html;
+    }).join("");
+}
 
 function escapeHtml(unsafeString) {
     return unsafeString
-        .replace(/</g, "&lt;")    // Replace '<' with '&lt;'
-        .replace(/>/g, "&gt;")    // Replace '>' with '&gt;'
-        .replace(/&/g, "&amp;")   // Replace '&' with '&amp;'
-        .replace(/"/g, "&quot;")  // Replace '"' with '&quot;'
-        .replace(/'/g, "&#039;"); // Replace "'" with '&#039;' (or &apos; if HTML5 compatible)
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 function mapRuntimeToHighlightLanguage(runtimeEnvironment) {
-    // Convert the input to lowercase for case-insensitive matching
-    var lowerCaseEnv = runtimeEnvironment.toLowerCase();
-
-    if (lowerCaseEnv.indexOf('node') !== -1) {
-        return 'javascript';
-    } else if (lowerCaseEnv.indexOf('powercli') !== -1 || lowerCaseEnv.indexOf('powershell') !== -1) {
-        return 'powershell';
-    } else if (lowerCaseEnv.indexOf('python') !== -1) {
-        return 'python';
-    }
-    // Default fallback if no specific language is matched
+    var lang = runtimeEnvironment.toLowerCase();
+    if (lang.indexOf('node') !== -1) return 'javascript';
+    if (lang.indexOf('powershell') !== -1 || lang.indexOf('powercli') !== -1) return 'powershell';
+    if (lang.indexOf('python') !== -1) return 'python';
     return 'javascript';
 }
+
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getActionByScriptModule</td></tr>
+</table><br><table><tr><th>Name</th><td>getActionByScriptModule</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.action</td></tr>
 <tr><th>ID</th><td>0750a240-85ef-4d92-8e95-cf7ace890475</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>scriptModule</td><td><code>string</code></td><td>Script Module (Module/Action)</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>scriptModule</td><td><code>string</code></td><td>Script Module (Module/Action)</td></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Additional Parameters</td></tr>
-<tr><td>vraHost</td><td><code>string</code></td><td>(Optional) VRA Host you want to find if there is more than 1 connection</td></tr>
-<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr>
-</table></td></tr>
+<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
-// Get VRA Host
-var host = System.getModule("com.broadcom.pso.vra.host").getHost(vraHost);
-
 // Use API Version if passed, else set API Version
 apiVersion = apiVersion ? apiVersion : '2021-07-15'
 
 // Build API Call
-var path = '/vco/api/actions/' + scriptModule
+var path = '/api/actions/' + scriptModule
 var query = encodeURI('?apiVersion=' + apiVersion + (query ? '&' + query : ''))
 var url = path + query
 
 // Execute API call and return results
-return System.getModule("com.broadcom.pso.vra.rest.methods").get(host, url);
+return System.getModule("com.broadcom.pso.vro.rest.methods").get(url);
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getHost</td></tr>
-<tr><th>Module</th><td>com.broadcom.pso.vra.host</td></tr>
-<tr><th>ID</th><td>eaf88276-8765-4e5b-b2e2-24125a792ff6</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>query</td><td><code>string</code></td><td>(Optional) Use only if you have multiple VRA Connections</td></tr>
-</table></td></tr>
-<tr><th>Output</th><td>VRA:Host</td></tr>
-<tr><th>Runtime Environment</th><td>Javascript</td></tr>
-<tr><th>Script</th><td class='script'>
-
-```javascript
-// Search VRA:Host using query
-var allVraHost = Server.findAllForType("VRA:Host");
-
-// Return if only 1 connection found
-if (allVraHost.length == 1) {
-    return allVraHost[0]
-} else {
-    // Set the query to Default if blank
-    if (!query) {
-        query = "Default";
-    }
-    for each(var host in allVraHost) {
-        if (host.name.match(query)) {
-            var vraHost = host;
-            break;
-        }
-    }
-    // Return if found
-    if (vraHost) {
-        return vraHost
-    } else {
-        throw "Unable to find vRA Host"
-    }
-}
-```
-
-</td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>get</td></tr>
-<tr><th>Module</th><td>com.broadcom.pso.vra.rest.methods</td></tr>
-<tr><th>ID</th><td>81e34fd4-ab31-4979-8495-2fb78d0c4480</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>vraHost</td><td><code>VRA:Host</code></td><td>VRA Host</td></tr>
-<tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
-<tr><td>headers</td><td><code>string</code></td><td>(Optional) If you want to send additional headers</td></tr>
-</table></td></tr>
-<tr><th>Output</th><td>Properties</td></tr>
-<tr><th>Runtime Environment</th><td>Javascript</td></tr>
-<tr><th>Script</th><td class='script'>
-
-```javascript
-// Set method
-var method = 'GET';
-
-// If headers is supplied, use headers else generate an empty property
-headers = headers ? headers : new Properties();
-
-// Return the Results
-return System.getModule("com.broadcom.pso.vra.rest.methods").restOperation(vraHost, method, url, null, headers);
-```
-
-</td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>restOperation</td></tr>
-<tr><th>Module</th><td>com.broadcom.pso.vra.rest.methods</td></tr>
-<tr><th>ID</th><td>c5e6c3e2-b656-46be-9f81-71189347205d</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>vraHost</td><td><code>VRA:Host</code></td><td>VRA Host</td></tr>
-<tr><td>method</td><td><code>string</code></td><td>Method</td></tr>
-<tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
-<tr><td>content</td><td><code>string</code></td><td>Content</td></tr>
-<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr>
-</table></td></tr>
-<tr><th>Output</th><td>Properties</td></tr>
-<tr><th>Runtime Environment</th><td>Javascript</td></tr>
-<tr><th>Script</th><td class='script'>
-
-```javascript
-try {
-    // Create the request object
-    var restHost = vraHost.createRestClient()
-    var request = restHost.createRequest(method, url, content);
-
-    // If there is headers, add headers
-    if (System.getObjectType(headers) == 'Properties') {
-        for (i in headers) {
-            request.setHeader(i, headers[i])
-        }
-    }
-
-    // Execute the request and log the results
-    var result = restHost.execute(request);
-    System.debug(
-        '\nURL: ' + restHost['host']['vraHost'] + url +
-        '\nMethod: ' + method +
-        '\nStatus: ' + result.statusCode +
-        '\nResponse: ' + result.contentAsString
-    );
-
-    if (result.statusCode >= 400) {
-        throw ("result.statusCode is greater than 400: " + method + " : " + url + " :statusCode: " + result.statusCode + " :contentAsString: " + result.contentAsString)
-    }
-    else {
-        if (result.contentLength === 0) {
-            var response = new Properties()
-            return response
-        }
-        else {
-            var response = new Object()
-            try {
-                var parsedContentAsString = JSON.parse(result.contentAsString)
-            } catch (e) {
-                System.log("Unable to parse contents. Returning a string")
-                return {
-                    'headers': result.getAllHeaders(),
-                    'content': result.contentAsString
-                }
-            }
-            if (parsedContentAsString instanceof Array) {
-                return {
-                    'content': parsedContentAsString
-                }
-            }
-            else if (parsedContentAsString instanceof Object) {
-                return parsedContentAsString
-
-            }
-        }
-    }
-} catch (e) {
-    throw "Unable to execute rest request: " + e
-}
-```
-
-</td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>getActionEnvironment</td></tr>
+</table><br><table><tr><th>Name</th><td>getActionEnvironment</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.action</td></tr>
 <tr><th>ID</th><td>f86aaabf-bc2e-441e-91eb-24a8ff02fe83</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>environmentId</td><td><code>string</code></td><td>Environment ID</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>environmentId</td><td><code>string</code></td><td>Environment ID</td></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Additional Parameters</td></tr>
-<tr><td>vraHost</td><td><code>string</code></td><td>(Optional) VRA Host you want to find if there is more than 1 connection</td></tr>
-<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr>
-</table></td></tr>
+<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
 
 ```javascript
-// Get VRA Host
-var host = System.getModule("com.broadcom.pso.vra.host").getHost(vraHost);
-
 // Use API Version if passed, else set API Version
 apiVersion = apiVersion ? apiVersion : '2021-07-15'
 
 // Build API Call
-var path = '/vco/api/catalog/System/ActionEnvironment/' + environmentId
+var path = '/api/catalog/System/ActionEnvironment/' + environmentId
 var query = encodeURI('?apiVersion=' + apiVersion + (query ? '&' + query : ''))
 var url = path + query
 
 // Execute API call and return results
-return System.getModule("com.broadcom.pso.vra.rest.methods").get(host, url);
+return System.getModule("com.broadcom.pso.vro.rest.methods").get(url);
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>updateResourceElementByMimeAttachement</td></tr>
+</table><br><table><tr><th>Name</th><td>updateResourceElementByMimeAttachement</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.resource</td></tr>
 <tr><th>ID</th><td>1fb353fb-d693-4217-a2e3-b905708b05f5</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>resourceElement</td><td><code>ResourceElement</code></td><td>Resource Element</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>resourceElement</td><td><code>ResourceElement</code></td><td>Resource Element</td></tr>
 <tr><td>content</td><td><code>Any</code></td><td>Content</td></tr>
-<tr><td>mimeType</td><td><code>string</code></td><td>Mime Type</td></tr>
-</table></td></tr>
+<tr><td>mimeType</td><td><code>string</code></td><td>Mime Type</td></tr></table></td></tr>
 <tr><th>Output</th><td>void</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -2001,66 +2055,18 @@ resourceElement.setContentFromMimeAttachment(mimeAttachment);
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>updateResourceForGitTracking</td></tr>
-<tr><th>Module</th><td>com.broadcom.pso.vro.rest.resource</td></tr>
-<tr><th>ID</th><td>9552d52c-b90e-4311-a53c-ca16e2f7450d</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
-<tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>resourceElement</td><td><code>ResourceElement</code></td><td>Resource Element</td></tr>
-</table></td></tr>
-<tr><th>Output</th><td>void</td></tr>
-<tr><th>Runtime Environment</th><td>Javascript</td></tr>
-<tr><th>Script</th><td class='script'>
-
-```javascript
-System.getModule("com.broadcom.pso.vro.rest.resource").updateResource(
-    System.getObjectId(resourceElement),
-    resourceElement.name,
-    resourceElement.description,
-    System.getObjectId(resourceElement.getResourceElementCategory()),
-    incrementMinorVersion(resourceElement.version)
-)
-
-function incrementMinorVersion(version) {
-    var parts = version.split(".");
-    if (parts.length !== 3) {
-        throw "Invalid version format. Expected format: 'x.y.z'";
-    }
-
-    var major = parseInt(parts[0], 10);
-    var minor = parseInt(parts[1], 10);
-    var patch = parseInt(parts[2], 10);
-
-    if (isNaN(major) || isNaN(minor) || isNaN(patch)) {
-        throw "Version parts must be numeric.";
-    }
-
-    patch += 1;
-
-    return major + "." + minor + "." + patch;
-}
-```
-
-</td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>updateResource</td></tr>
+</table><br><table><tr><th>Name</th><td>updateResource</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.resource</td></tr>
 <tr><th>ID</th><td>7529eef6-0c4f-4824-a728-0c26349be13a</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>resourceId</td><td><code>string</code></td><td>Resource ID</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>resourceId</td><td><code>string</code></td><td>Resource ID</td></tr>
 <tr><td>name</td><td><code>string</code></td><td>Name</td></tr>
 <tr><td>description</td><td><code>string</code></td><td>Description</td></tr>
 <tr><td>categoryId</td><td><code>string</code></td><td>Category ID</td></tr>
 <tr><td>version</td><td><code>string</code></td><td>Version</td></tr>
 <tr><td>query</td><td><code>string</code></td><td>(Optional) Additional Parameters</td></tr>
-<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr>
-</table></td></tr>
+<tr><td>apiVersion</td><td><code>string</code></td><td>(Optional) Override the default API Version</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -2087,18 +2093,14 @@ return System.getModule("com.broadcom.pso.vro.rest.methods").put(url, JSON.strin
 ```
 
 </td></tr>
-</table><br>
-<table class='table'>
-<tr><th>Name</th><td>put</td></tr>
+</table><br><table><tr><th>Name</th><td>put</td></tr>
 <tr><th>Module</th><td>com.broadcom.pso.vro.rest.methods</td></tr>
 <tr><th>ID</th><td>e7ed398e-f9d4-4a29-b503-b2f0639d33a7</td></tr>
-<tr><th>Version</th><td><code>0.1.0</code></td></tr>
+<tr><th>Version</th><td><code>0.2.0</code></td></tr>
 <tr><th>Description</th><td>No description</td></tr>
-<tr><th>Inputs</th><td><table class='table'><tr><th>Name</th><th>Type</th><th>Description</th></tr>
-<tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
+<tr><th>Inputs</th><td><table><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td>url</td><td><code>string</code></td><td>URL</td></tr>
 <tr><td>content</td><td><code>string</code></td><td>Content</td></tr>
-<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr>
-</table></td></tr>
+<tr><td>headers</td><td><code>Properties</code></td><td>(Optional) Headers</td></tr></table></td></tr>
 <tr><th>Output</th><td>Properties</td></tr>
 <tr><th>Runtime Environment</th><td>Javascript</td></tr>
 <tr><th>Script</th><td class='script'>
@@ -2115,25 +2117,31 @@ return System.getModule("com.broadcom.pso.vro.rest.methods").restOperation(metho
 ```
 
 </td></tr>
-</table><br>
-</td></tr>
-</table>
-
-<h3><a name='item0'>Step 2 - item0 (Main path)</a></h3>
-<table class='table'>
-<tr><th class=''>Name</th><td class=''>item0</td></tr>
-<tr><th class=''>Display Name</th><td class=''>undefined</td></tr>
-<tr><th class=''>Type</th><td class=''>end</td></tr>
-<tr><th class=''>Description</th><td class=''>No description</td></tr>
-</table>
-
-<h3><a name='item2'>Step 3 - item2 (Error Handler path)</a></h3>
-<table class='table'>
-<tr><th class=''>Name</th><td class=''>item2</td></tr>
-<tr><th class=''>Display Name</th><td class=''>undefined</td></tr>
-<tr><th class=''>Type</th><td class=''>end</td></tr>
-<tr><th class=''>Description</th><td class=''>No description</td></tr>
-<tr><th class=''>Error Bind</th><td class=''>errCode</td></tr>
+</table><br></td></tr>
 </table>
 
 
+---
+<h3><a name='item0'>End Workflow [Main path]</a></h3>
+<table>
+<tr><th>Name</th><td>item0</td></tr>
+<tr><th>Display Name</th><td>undefined</td></tr>
+<tr><th>Type</th><td>end</td></tr>
+<tr><th>Description</th><td>No description</td></tr>
+<tr><th>Input Bindings</th><td></td></tr>
+</table>
+
+
+---
+<h3><a name='item2'>End Workflow [Error Handler path]</a></h3>
+<table>
+<tr><th>Name</th><td>item2</td></tr>
+<tr><th>Display Name</th><td>undefined</td></tr>
+<tr><th>Type</th><td>end</td></tr>
+<tr><th>Description</th><td>No description</td></tr>
+<tr><th>Error Bind</th><td>errCode</td></tr>
+<tr><th>Input Bindings</th><td></td></tr>
+</table>
+
+
+---

@@ -3,7 +3,7 @@
 This repository provides a compiled Aria Automation Orchestrator (formerly vRealize Orchestrator, vRO) package containing all workflows and actions from the [`source/`](source/) directory, along with automated documentation generation for each workflow. The solution is designed to make your automation self-documenting, visually clear, and easy to maintain.
 
 **Project Repository:** [vro-documentation](https://github.com/RoinGrindwald/vro-documentation)  
-**Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v1.2.1)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2.1/com.broadcom.pso.vro.documentation.package)
+**Direct Package Download:** [com.broadcom.pso.vro.documentation.package (v2.0.0)](https://github.com/RoinGrindwald/vro-documentation/releases/download/v2.0.0/com.broadcom.pso.vro.documentation.package)
 
 ---
 
@@ -70,9 +70,9 @@ All components are delivered in the `com.broadcom.pso.vro.documentation.package`
    Download and import the package into your Aria Automation Orchestrator environment.
 2. **Run Documentation Workflows:**  
    - **Generate Workflow Documentation:**  
-     Inputs: `workflow`, `type` (Markdown/HTML), `useClarity` (for Clarity CSS), `horizontal` (diagram orientation)
+     Inputs: `workflow`, `type` (Markdown/HTML), `asTable` (For Workflow Steps as a table), `horizontal` (diagram orientation)
    - **Generate Workflow Category Documentation:**  
-     Inputs: `workflowCategory`, `type` (Markdown/HTML), `useClarity` (for Clarity CSS), `horizontal` (diagram orientation)
+     Inputs: `workflowCategory`, `type` (Markdown/HTML), `asTable` (For Workflow Steps as a table), `horizontal` (diagram orientation)
    - Outputs are stored as Resource Elements.
 3. **Export or Use Documentation:**  
    Retrieve the generated Resource Elements or export the Markdown/HTML/SVG files for use in wikis, documentation portals, or as PDFs.
@@ -85,9 +85,9 @@ See the [`documentation/`](documentation/) folder for real examples of the gener
 
 | Workflow                         | Inputs                                         | Outputs                          |
 |-----------------------------------|------------------------------------------------|-----------------------------------|
-| Generate Workflow Documentation   | `workflow`, `type`, `useClarity`, `horizontal` | `workflowDocumentation`           |
-| Generate Workflow Category Documentation | `workflowCategory`, `type`, `useClarity`, `horizontal` | `result` (array of ResourceElements) |
-| Generate All Workflow Documentation | `includeLibrary`, `type`, `useClarity`, `horizontal` | `result` (array of ResourceElements) |
+| Generate Workflow Documentation   | `workflow`, `type`, `asTable`, `horizontal` | `workflowDocumentation`           |
+| Generate Workflow Category Documentation | `workflowCategory`, `type`, `asTable`, `horizontal` | `result` (array of ResourceElements) |
+| Generate All Workflow Documentation | `includeLibrary`, `type`, `asTable`, `horizontal` | `result` (array of ResourceElements) |
 
 ---
 
@@ -101,7 +101,7 @@ See the [`documentation/`](documentation/) folder for real examples of the gener
 
 ## See It In Action
 
-![Example SVG Diagram](documentation/Generate_Workflow_Category_Documentation.svg)
+![Example SVG Diagram](example/Test.svg)
 
 *Above: Automatically generated SVG diagram using Aria Automation Orchestrator workflow icons.*
 
@@ -122,7 +122,7 @@ Use these files to see exactly how the documentation and diagrams will look for 
 ## Quick Start
 
 1. **Download & Import:**  
-   [Download the package](https://github.com/RoinGrindwald/vro-documentation/releases/download/v1.2.1/com.broadcom.pso.vro.documentation.package) and import into Aria Automation Orchestrator.
+   [Download the package](https://github.com/RoinGrindwald/vro-documentation/releases/download/v2.0.0/com.broadcom.pso.vro.documentation.package) and import into Aria Automation Orchestrator.
 2. **Run a Workflow:**  
    Launch `Generate Workflow Documentation` or `Generate Workflow Category Documentation` from the Orchestrator client.
 3. **View Results:**  
